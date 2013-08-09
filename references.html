@@ -1,0 +1,130 @@
+<p><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class='chapter_links'></p>
+
+<ul>
+<li><span class='previous_chapter_link'><a href="concepts.html">Concepts</a></span></li>
+<li><span class='toc_link'><a href="index.html">Table of Contents</a></span></li>
+</ul>
+
+<p></div>
+<div class='toc_links'></p>
+
+<ul>
+<li>19 <a href="#references">References</a>
+
+<ul>
+<li>19.1 <a href="#scope-selector">Scope Selector</a></li>
+<li>19.2 <a href="#format-string">Format String</a></li>
+<li>19.3 <a href="#glob-string">Glob String</a></li>
+<li>19.4 <a href="#selection-string">Selection String</a></li>
+<li>19.5 <a href="#modified-property-list">Modified Property List</a></li>
+</ul></li>
+</ul>
+
+<p></div></p>
+
+<h1 id="references">19 References</h1>
+
+<h2 id="scope-selector">19.1 Scope Selector</h2>
+
+<p>The scope selector syntax is as follows:</p>
+
+<pre><code>atom:         «string» | '*'
+scope:        «atom» ('.' «atom»)*
+path:         '^'? «scope» ('&gt;'? «scope»)* '$'?
+group:        '(' «selector» ')'
+filter:       (&quot;L:&quot;|&quot;R:&quot;|&quot;B:&quot;) («group» | «path»)
+expression:   '-'? («filter» | «group» | «path»)
+composite:    «expression» ([|&amp;-] «expression»)*
+selector:     «composite» (',' «composite»)*
+</code></pre>
+
+<ul>
+<li>Left/right scope matching</li>
+<li>Begin/end anchoring, ignoring attribute scopes</li>
+<li>Wildcard matching</li>
+<li>Descendent selector</li>
+</ul>
+
+<h2 id="format-string">19.2 Format String</h2>
+
+<pre><code>$«var»
+${«var»}
+${«var»:?«if»:«else»}
+${«var»:+«if»}
+${«var»:-«else»}
+${«var»:«else»}
+${«var»/«regexp»/«format»/«options»}
+${«var»:[/upcase][/downcase][/capitalize][/asciify]}
+
+(?«var»:«if»:«else»}
+(?«var»:«if»}
+
+\U, \L, \E, \u, \l
+\n, \t
+</code></pre>
+
+<ul>
+<li>Used for: grammar names, <code>.tm_properties</code> values, Preferences → Variables, replacement strings</li>
+</ul>
+
+<h2 id="glob-string">19.3 Glob String</h2>
+
+<pre><code>\«char»         -- Literal «char»
+?               -- Match one character
+*               -- Match zero or more characters¹
+**              -- Match zero or more path components
+{«a»,«b»,«c»}   -- Match «a» or «b» or «c»
+[«a»«b»«c»]     -- Match an «a», «b» or «c» character
+[«a»-«b»]       -- Match one character in the range «a»-«b»
+[^«a»-«b»]      -- Match one character not in the range «a»-«b»
+</code></pre>
+
+<p>Braces can be nested and contain other glob characters. Example:</p>
+
+<pre><code>{*.{cc,mm,h},target,Makefile,.tm_properties}
+</code></pre>
+
+<p>Will match these files:</p>
+
+<pre><code>source.cc
+source.mm
+source.h
+target
+Makefile
+.tm_properties
+</code></pre>
+
+<p>¹ The asterisk will not match slashes nor a leading period.</p>
+
+<ul>
+<li>Used in <code>.tm_properties</code>, find in folder</li>
+</ul>
+
+<h2 id="selection-string">19.4 Selection String</h2>
+
+<pre><code>selection    = «range» ('&amp;' «range»)*
+range        = «pos» | «normal_range» | «column_range»
+pos          = «line» (':' «column»)? ('+' «offset»)?
+normal_range = «pos» '-' «pos»
+column_range = «pos» 'x' «pos»
+line         = [1-9][0-9]*
+column       = [1-9][0-9]*
+offset       = [1-9][0-9]*
+</code></pre>
+
+<p>This can be used with <code>mate -l</code>, <em>Go to Line…</em>, and the <kbd class='keyEquivalent'>⌘T</kbd> dialog (by putting <code>:«selection string»</code> after the file name) — as for the latter, if a string on the find clipboard has this format, it will be the default value in <kbd class='keyEquivalent'>⌘T</kbd>, this is useful if you have a line in Terminal like:</p>
+
+<pre><code>main.cc:32: warning: no return statement.
+</code></pre>
+
+<p>You can then select <code>main.cc:32</code> press <kbd class='keyEquivalent'>⌘E</kbd> and jump to Avian and press <kbd class='keyEquivalent'>⌘T</kbd> followed by <kbd class='keyEquivalent'>↩</kbd> (one shortcoming is that <kbd class='keyEquivalent'>⌘T</kbd> doesn’t show the currently open file, so it will only work if <code>main.cc</code> is not already the active file).</p>
+
+<h2 id="modified-property-list">19.5 Modified Property List</h2>
+<div class='chapter_links'>
+
+<ul>
+<li><span class='previous_chapter_link'><a href="concepts.html">Concepts</a></span></li>
+<li><span class='toc_link'><a href="index.html">Table of Contents</a></span></li>
+</ul>
+</div>

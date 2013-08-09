@@ -1,0 +1,1068 @@
+<p><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class='toc'></p>
+
+<ul>
+<li>1 <a href="opening-files.html#opening-files">Opening Files</a>
+
+<ul>
+<li>1.1 <a href="opening-files.html#file-chooser">File Chooser</a></li>
+<li>1.2 <a href="opening-files.html#move-between-related-files">Move Between Related Files</a></li>
+<li>1.3 <a href="opening-files.html#favorites">Favorites</a></li>
+<li>1.4 <a href="opening-files.html#mate"><code>mate</code></a></li>
+<li>1.5 <a href="opening-files.html#rmate"><code>rmate</code></a></li>
+<li>1.6 <a href="opening-files.html#url-scheme">URL Scheme</a></li>
+</ul></li>
+<li>2 <a href="projects.html#projects">Projects</a>
+
+<ul>
+<li>2.1 <a href="projects.html#project-folder">Project Folder</a></li>
+<li>2.2 <a href="projects.html#window-title">Window Title</a></li>
+<li>2.3 <a href="projects.html#tabs">Tabs</a>
+
+<ul>
+<li>2.3.1 <a href="projects.html#creating-tabs">Creating Tabs</a></li>
+<li>2.3.2 <a href="projects.html#closing-tabs">Closing Tabs</a></li>
+</ul></li>
+<li>2.4 <a href="projects.html#file-browser">File Browser</a>
+
+<ul>
+<li>2.4.1 <a href="projects.html#creating-new-items">Creating New Items</a></li>
+<li>2.4.2 <a href="projects.html#location-and-selections">Location and Selections</a></li>
+<li>2.4.3 <a href="projects.html#drag-and-drop">Drag and Drop</a></li>
+<li>2.4.4 <a href="projects.html#keyboard-usage">Keyboard Usage</a></li>
+<li>2.4.5 <a href="projects.html#custom-commands">Custom Commands</a></li>
+</ul></li>
+</ul></li>
+<li>3 <a href="version-control.html#version-control">Version Control</a></li>
+<li>4 <a href="searching.html#searching">Searching</a>
+
+<ul>
+<li>4.1 <a href="searching.html#search-options">Search Options</a></li>
+</ul></li>
+<li>5 <a href="text-editing.html#text-editing">Text Editing</a>
+
+<ul>
+<li>5.1 <a href="text-editing.html#navigation">Navigation</a></li>
+<li>5.2 <a href="text-editing.html#selection">Selection</a></li>
+<li>5.3 <a href="text-editing.html#multiple-carets">Multiple Carets</a></li>
+<li>5.4 <a href="text-editing.html#cut-copy-and-paste">Cut, Copy, and Paste</a></li>
+<li>5.5 <a href="text-editing.html#buffer-completion">Buffer Completion</a></li>
+<li>5.6 <a href="text-editing.html#macros">Macros</a></li>
+<li>5.7 <a href="text-editing.html#auto-indenting-text">Auto-indenting Text</a></li>
+<li>5.8 <a href="text-editing.html#transposing-text">Transposing Text</a></li>
+<li>5.9 <a href="text-editing.html#spell-checking">Spell Checking</a></li>
+<li>5.10 <a href="text-editing.html#shell-command-filters">Shell Command Filters</a></li>
+<li>5.11 <a href="text-editing.html#dropping-items">Dropping Items</a></li>
+</ul></li>
+<li>6 <a href="snippets.html#snippets">Snippets</a></li>
+<li>7 <a href="commands.html#commands">Commands</a>
+
+<ul>
+<li>7.1 <a href="commands.html#drag-commands">Drag Commands</a></li>
+<li>7.2 <a href="commands.html#writing-commands">Writing Commands</a></li>
+</ul></li>
+<li>8 <a href="html-output.html#html-output">HTML Output</a>
+
+<ul>
+<li>8.1 <a href="html-output.html#html-output-theme">HTML Output Theme</a></li>
+<li>8.2 <a href="html-output.html#javascript-api">JavaScript API</a>
+
+<ul>
+<li>8.2.1 <a href="html-output.html#textmatesystem">TextMate.system()</a></li>
+<li>8.2.2 <a href="html-output.html#synchronous-operation">Synchronous Operation</a></li>
+<li>8.2.3 <a href="html-output.html#asynchronous-operation">Asynchronous Operation</a></li>
+</ul></li>
+</ul></li>
+<li>9 <a href="showing-dialogs.html#showing-dialogs">Showing Dialogs</a>
+
+<ul>
+<li>9.1 <a href="showing-dialogs.html#dialog">Dialog</a></li>
+<li>9.2 <a href="showing-dialogs.html#commit-window">Commit Window</a></li>
+</ul></li>
+<li>10 <a href="printing.html#printing">Printing</a>
+
+<ul>
+<li>10.1 <a href="printing.html#printing-plain-text">Printing Plain Text</a></li>
+<li>10.2 <a href="printing.html#printing-processed-output">Printing Processed Output</a></li>
+</ul></li>
+<li>11 <a href="saving-files.html#saving-files">Saving Files</a></li>
+<li>12 <a href="bundles.html#bundles">Bundles</a>
+
+<ul>
+<li>12.1 <a href="bundles.html#finding-bundle-items">Finding Bundle Items</a></li>
+<li>12.2 <a href="bundles.html#general-actions">General Actions</a></li>
+<li>12.3 <a href="bundles.html#source-actions">Source Actions</a></li>
+<li>12.4 <a href="bundles.html#bundle-editor">Bundle Editor</a></li>
+<li>12.5 <a href="bundles.html#requirements">Requirements</a>
+
+<ul>
+<li>12.5.1 <a href="bundles.html#examples">Examples</a></li>
+</ul></li>
+</ul></li>
+<li>13 <a href="presentation.html#presentation">Presentation</a></li>
+<li>14 <a href="language-grammars.html#language-grammars">Language Grammars</a>
+
+<ul>
+<li>14.1 <a href="language-grammars.html#injected-grammars">Injected Grammars</a></li>
+<li>14.2 <a href="language-grammars.html#file-type-detection">File Type Detection</a></li>
+</ul></li>
+<li>15 <a href="scopes.html#scopes">Scopes</a>
+
+<ul>
+<li>15.1 <a href="scopes.html#attribute-scope">Attribute Scope</a></li>
+<li>15.2 <a href="scopes.html#dynamic-scope">Dynamic Scope</a></li>
+</ul></li>
+<li>16 <a href="variables.html#variables">Variables</a></li>
+<li>17 <a href="settings.html#settings">Settings</a>
+
+<ul>
+<li>17.1 <a href="settings.html#file-settings">File Settings</a>
+
+<ul>
+<li>17.1.1 <a href="settings.html#filtering-files">Filtering Files</a></li>
+</ul></li>
+<li>17.2 <a href="settings.html#scope-settings">Scope Settings</a></li>
+<li>17.3 <a href="settings.html#hidden-settings">Hidden Settings</a></li>
+<li>17.4 <a href="settings.html#key-bindings">Key Bindings</a></li>
+</ul></li>
+<li>18 <a href="concepts.html#concepts">Concepts</a>
+
+<ul>
+<li>18.1 <a href="concepts.html#proxy-item">Proxy Item</a></li>
+<li>18.2 <a href="concepts.html#semantic-class">Semantic Class</a></li>
+<li>18.3 <a href="concepts.html#encoding">Encoding</a></li>
+</ul></li>
+<li>19 <a href="references.html#references">References</a>
+
+<ul>
+<li>19.1 <a href="references.html#scope-selector">Scope Selector</a></li>
+<li>19.2 <a href="references.html#format-string">Format String</a></li>
+<li>19.3 <a href="references.html#glob-string">Glob String</a></li>
+<li>19.4 <a href="references.html#selection-string">Selection String</a></li>
+<li>19.5 <a href="references.html#modified-property-list">Modified Property List</a></li>
+</ul></li>
+</ul>
+
+<p></div>
+<hr></p>
+
+<h1 id="opening-files">1 Opening Files</h1>
+
+<ul>
+<li>See also: Import Commands</li>
+</ul>
+
+<h2 id="file-chooser">1.1 File Chooser</h2>
+
+<ul>
+<li>Filtering files (customizing)</li>
+<li>Selecting multiple file (<kbd class='keyEquivalent'>⇧↓</kbd>/<kbd class='keyEquivalent'>⇧↑</kbd>)</li>
+<li>Open document and close other (<kbd class='keyEquivalent'>⌥↩</kbd>)</li>
+<li>Default ranking: LRU, default file: taken from find clipboard if it’s <code>«file»:«line»</code></li>
+<li>Selection string suffix (see appendix)</li>
+<li>Full path matching (using slash)</li>
+<li>Switching source: <kbd class='keyEquivalent'>⌘1</kbd>-<kbd class='keyEquivalent'>⌘n</kbd></li>
+<li>Go to parent (<kbd class='keyEquivalent'>⌘↑</kbd>)</li>
+<li><code>followSymbolicLinks</code> in <code>.tm_properties</code></li>
+<li>Go to parent (<kbd class='keyEquivalent'>⌘↑</kbd>)</li>
+</ul>
+
+<h2 id="move-between-related-files">1.2 Move Between Related Files</h2>
+
+<ul>
+<li>Key equivalent: <kbd class='keyEquivalent'>⌥⌘↑</kbd></li>
+<li>How to customize (<code>.tm_properties</code>)</li>
+</ul>
+
+<h2 id="favorites">1.3 Favorites</h2>
+
+<ul>
+<li>Bringing up list of favorites (<kbd class='keyEquivalent'>⇧⌘O</kbd>)</li>
+<li>Adding to favorites (via file browser)</li>
+<li>Removing from favorites</li>
+<li>Adding entire folders as favorites</li>
+</ul>
+
+<h2 id="mate">1.4 <code>mate</code></h2>
+
+<ul>
+<li><code>EDITOR</code> variable (<code>--wait</code>, <code>-wl1</code> for git)</li>
+<li>Ability to use <code>sudo</code></li>
+<li>Reading from stdin</li>
+<li>Calling <code>mate</code> from commands (<code>TM_MATE</code>)</li>
+<li>See also: Selection String Syntax</li>
+</ul>
+
+<h2 id="rmate">1.5 <code>rmate</code></h2>
+
+<ul>
+<li>How to install</li>
+</ul>
+
+<h2 id="url-scheme">1.6 URL Scheme</h2>
+
+<ul>
+<li>Options for <code>txmt</code></li>
+<li>How to set default app to handle the URL scheme</li>
+</ul>
+
+<p><hr></p>
+
+<h1 id="projects">2 Projects</h1>
+
+<p>TextMate 1.x allowed you to add and group files in a source list, which served as input for “project actions” such as the <a href="opening-files.html#file-chooser">file chooser</a> and multi-file searching.</p>
+
+<p>This functionality is not available in TextMate 2, instead you select a folder to use as a project, and TextMate will treat items in that folder as belonging to the project. Unwanted items can be excluded by <a href="settings.html#filtering-files">filtering files</a>, and symbolic links can be created to reference items outside the folder, though when referencing other folders, they are not followed by default by the <a href="opening-files.html#file-chooser">file chooser</a> and during <a href="searching.html#searching">searching</a>, but this can be enabled.</p>
+<!-- TODO Should probably allow the file browser to expand symbolic links -->
+
+<p>The main reason for the change is that any organization done inside TextMate is not understood by third party tools. For example if you wish to use version control, you will find that pretty much all version control systems work on a folder, not on a set of items defined by a <code>.tmProject</code> file. Even many of TextMate’s own bundle commands are made to work with a “project folder”.</p>
+
+<h2 id="project-folder">2.1 Project Folder</h2>
+
+<p>The project folder is used by the <a href="opening-files.html#file-chooser">file chooser</a>, <a href="searching.html#searching">searching</a>, is exposed to <a href="commands.html#commands">commands</a> as the <code>TM_PROJECT_DIRECTORY</code> <a href="variables.html#variables">variable</a>, and is also the folder from where <a href="settings.html#file-settings">settings</a> are read when there is no document path.</p>
+
+<p>When opening a folder, for example by dragging the folder to the TextMate application icon, the window created will have the dragged folder associated with it, as that window’s project folder. When opening a single file, it will use the parent folder of that file.</p>
+
+<p>You can see the project folder’s name in the window title or you can use <em>Go → Project Folder</em> (<kbd class='keyEquivalent'>⇧⌘P</kbd>) to show the project folder in the <a href="projects.html#file-browser">file browser</a>.</p>
+
+<p>If you wish to change the project folder then you can use the file browser to navigate to the new desired project folder, open the drop-down menu at the top, and select <em>Use «folder» as Project Folder</em>.</p>
+
+<p>It is possible to explicitly set the project folder via <a href="settings.html#file-settings">file settings</a>. The key to use is <code>projectDirectory</code> and it would normally be set to <code>$CWD</code>, though we generally do not recommend this, as the implicit setting is more flexible, for example it makes it easy to open a subset of the project as a new project, where searching and the file chooser is limited to this subset.</p>
+
+<p>You can use <em>Go → Enclosing Folder</em> (<kbd class='keyEquivalent'>⌘↑</kbd>) with the file chooser or search dialog open to temporarily use parent folders as source for these actions.</p>
+
+<h2 id="window-title">2.2 Window Title</h2>
+
+<p>The window title contains the document name, the name of the project folder (if any) and the current branch, if the project is using a version control system that supports branches. This is done via <a href="settings.html#file-settings">file settings</a> using the <code>windowTitle</code> key, here are the default settings:</p>
+
+<pre><code>windowTitleSCM     = '${TM_SCM_BRANCH:+ ($TM_SCM_NAME: $TM_SCM_BRANCH)}'
+windowTitleProject = '${projectDirectory:+ — ${projectDirectory/^.*\///}}'
+windowTitle        = '$TM_DISPLAYNAME$windowTitleProject$windowTitleSCM'
+</code></pre>
+
+<p>If you wish to change the title you can make use of the two <code>windowTitleProject</code> and <code>windowTitleSCM</code> variables to optionally include project and version control info in your custom title.</p>
+
+<p>For example, if we want to always show the parent folder of the current document we can add this to the project’s <code>.tm_properties</code> file:</p>
+
+<pre><code>windowTitle = &quot;${TM_FILEPATH/.*\/(.*\/).*/$1/}$TM_DISPLAYNAME$windowTitleProject$windowTitleSCM&quot;
+</code></pre>
+
+<h2 id="tabs">2.3 Tabs</h2>
+
+<h3 id="creating-tabs">2.3.1 Creating Tabs</h3>
+
+<p>Most ways to open a file inside TextMate will make it open as a new tab in the current window. Files opened from outside TextMate will open as a new tab if the file is a descendent of an existing window’s project folder, or if a project has been explicitly requested for the file being opened. The latter is possible using <a href="opening-files.html#mate">mate</a> and setting the <code>TM_PROJECT_UUID</code> <a href="variables.html#variables">environment variable</a>, something that is implicitly done when <code>mate</code> is called by a <a href="commands.html#commands">command</a> running inside TextMate, meaning bundle commands that open new files will normally open these as tabs in the existing project.</p>
+
+<p>Selecting <em>Window → Merge All Windows</em> will move all open documents in non-minimized windows to a single window (with tabs). That minimized windows are excluded from the merging can be exploited if the goal is to merge all but a few documents into a single window: minimize the windows that should be left alone, and then select the action.</p>
+
+<p>Once a file has been opened in a new tab, it is possible to move it to a new window by selecting <em>Window → Move Tab to New Window</em>, by selecting the same action in the tab’s context menu, or by double-clicking the tab.</p>
+
+<p>Tabs can also be dragged between windows but if dropped outside the tab bar of an existing TextMate window, the drag will act as if the file itself was dropped, rather than create a new window for the document. This is useful when you need the path of a document inserted into your terminal, as you can then drag and drop the desired tab to the terminal window.</p>
+
+<h3 id="closing-tabs">2.3.2 Closing Tabs</h3>
+
+<p>A common problem is being left with too many open tabs. In an attempt to counter that, TextMate will automatically close tabs that hasn’t been used in a while, when the tab bar overflows.</p>
+
+<p>Additionally there are a few explicit ways that you can close multiple tabs in a single action:</p>
+
+<ul>
+<li>Hold down option (<kbd class='keyEquivalent'>⌥</kbd>) when opening a file either via the <a href="projects.html#file-browser">file browser</a> or <a href="opening-files.html#file-chooser">file chooser</a>. For the latter, you normally open files via return (<kbd class='keyEquivalent'>↩</kbd>) so here you would press option-return (<kbd class='keyEquivalent'>⌥↩</kbd>).</li>
+<li>Use <em>File → Close Other Tabs</em> (<kbd class='keyEquivalent'>⌃⌘W</kbd>) or <em>File → Close All Tabs</em> (<kbd class='keyEquivalent'>⌃⌥⌘W</kbd>).</li>
+<li>Right-click a tab and select any of the close actions, e.g. <em>Close Tabs to the Right</em>.</li>
+</ul>
+
+<p>Sometimes you have documents that should stay open, like a to-do list, which may prevent the use of a batch close action. In this case, right-click the tab in question and select <em>Sticky</em> (toggle). When a tab is made sticky, the batch close actions will leave it open.</p>
+
+<h2 id="file-browser">2.4 File Browser</h2>
+
+<p>Opening files from the file browser is done by single-clicking the file’s icon, double-clicking the file name, or using command-down (<kbd class='keyEquivalent'>⌘↓</kbd>) when focus is in the file browser.</p>
+
+<p>Descending into file packages or application bundles can be done either by selecting <em>Show Package Contents</em> from the context menu, or by holding option (<kbd class='keyEquivalent'>⌥</kbd>) while double-clicking the item or single-clicking the item’s icon.</p>
+
+<h3 id="creating-new-items">2.4.1 Creating New Items</h3>
+
+<p>New files and folders can be created using <em>File → New File</em> (<kbd class='keyEquivalent'>⇧⌘N</kbd>) and <em>File → New Folder</em> (<kbd class='keyEquivalent'>⌃⌘N</kbd>). The location of the new item is determined by the current selection in the file browser. If something is selected, then the new item will be created at the same level as the selected item(s), one exception is that selecting an expanded folder item will create the new item as a descendent of the selected folder.</p>
+
+<p>When creating a new file, the file type is read via <a href="settings.html#file-settings">file settings</a> using the <code>fileType</code> key scoped to <code>attr.untitled</code>. If for example we wish new files in our <code>/path/to/project/manual</code> should default to markdown, then create <code>/path/to/project/manual/.tm_properties</code> containing:</p>
+
+<pre><code>[ attr.untitled ]
+fileType = &quot;text.html.markdown&quot;
+</code></pre>
+
+<p>This setting is also used by <em>File → New Tab</em> (<kbd class='keyEquivalent'>⌥⌘N</kbd>).</p>
+
+<h3 id="location-and-selections">2.4.2 Location and Selections</h3>
+
+<p>Many <a href="commands.html#commands">commands</a> use the file browser selection as the set of files to work on, for example if you wish to see uncommitted changes for a subset of files, select those files before invoking the version control command. If there are no selection, the commands will generally work on the entire project.</p>
+
+<p>For this reason, there are two very useful actions, namely <em>Go → Current Document</em> (<kbd class='keyEquivalent'>⌃⌘R</kbd>) which will reveal and select the current document in the file browser. In the file browser’s context menu there is <em>Select None</em> (<kbd class='keyEquivalent'>⇧⌘A</kbd>) which will deselect all selected items. The key equivalent for this item works even when focus is not in the file browser.</p>
+
+<p>In the <em>Go</em> menu you can find a few other useful actions for changing location of the file browser. Be aware that the key equivalent of <em>Go → Back</em> (<kbd class='keyEquivalent'>⌘[</kbd>), <em>Go → Forward</em> (<kbd class='keyEquivalent'>⌘]</kbd>), <em>Go → Enclosing Folder</em> (<kbd class='keyEquivalent'>⌘↑</kbd>), and <em>Go → Other Folder…</em> (<kbd class='keyEquivalent'>⇧⌘G</kbd>) is only available when focus is in the file browser, and due to technical limitations, will not show in the menu.</p>
+
+<h3 id="drag-and-drop">2.4.3 Drag and Drop</h3>
+
+<p>Drag and drop can be used to move files from one location to another but by holding down command (<kbd class='keyEquivalent'>⌘</kbd>) the drop will result in a duplicate, and control (<kbd class='keyEquivalent'>⌃</kbd>) will cause a symbolic link to be created at the drop location.</p>
+
+<h3 id="keyboard-usage">2.4.4 Keyboard Usage</h3>
+
+<p>Moving keyboard focus to the file browser can be done by selecting <em>Navigate → Move Focus to File Browser</em> (<kbd class='keyEquivalent'>⌥⌘⇥</kbd>). Use the same action to move focus back to the document.</p>
+
+<p>When focus is in the file browser, the following key equivalents can be used.</p>
+
+<table>
+<colgroup>
+<col style="text-align:left;"/>
+<col style="text-align:left;"/>
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;">Key Equivalent</th>
+	<th style="text-align:left;">Action</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;"><kbd class='keyEquivalent'>⌘↓</kbd>, <kbd class='keyEquivalent'>⌘O</kbd></td>
+	<td style="text-align:left;">Open selected item(s)</td>
+</tr>
+<tr>
+	<td style="text-align:left;">Space</td>
+	<td style="text-align:left;">Quick Look selected item(s)</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><kbd class='keyEquivalent'>↩</kbd></td>
+	<td style="text-align:left;">Rename selected item</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><kbd class='keyEquivalent'>⌘D</kbd></td>
+	<td style="text-align:left;">Duplicate selected item(s)</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><kbd class='keyEquivalent'>⌘X</kbd>, <kbd class='keyEquivalent'>⌘C</kbd></td>
+	<td style="text-align:left;">Cut or copy selected item(s)</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><kbd class='keyEquivalent'>⌘V</kbd></td>
+	<td style="text-align:left;">Paste item(s)</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><kbd class='keyEquivalent'>⌘⌫</kbd></td>
+	<td style="text-align:left;">Move selected item(s) to trash</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><kbd class='keyEquivalent'>⌘Z</kbd>, <kbd class='keyEquivalent'>⇧⌘Z</kbd></td>
+	<td style="text-align:left;">Undo or redo last action</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><kbd class='keyEquivalent'>⌥⌘I</kbd></td>
+	<td style="text-align:left;">Show hidden files</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><kbd class='keyEquivalent'>⌘←</kbd>, <kbd class='keyEquivalent'>⌘[</kbd></td>
+	<td style="text-align:left;">Go back in history</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><kbd class='keyEquivalent'>⌘→</kbd>, <kbd class='keyEquivalent'>⌘]</kbd></td>
+	<td style="text-align:left;">Go forward in history</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><kbd class='keyEquivalent'>⌘↑</kbd></td>
+	<td style="text-align:left;">Go to enclosing folder</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><kbd class='keyEquivalent'>⇧⌘G</kbd></td>
+	<td style="text-align:left;">Go to folder…</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><kbd class='keyEquivalent'>⇧⌘F</kbd></td>
+	<td style="text-align:left;">Search with source based on selection</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><kbd class='keyEquivalent'>⌥F2</kbd></td>
+	<td style="text-align:left;">Show context menu</td>
+</tr>
+</tbody>
+</table>
+<p>When you cut one or more items, they will not be removed before you paste them somewhere else, as the action is meant for moving items. Use delete instead of cut, if you want the item to be removed.</p>
+
+<h3 id="custom-commands">2.4.5 Custom Commands</h3>
+
+<p>It is possible to add your own <a href="commands.html#commands">commands</a> to the file browser’s action menu.</p>
+
+<p>This is done by creating a bundle command and setting its <a href="concepts.html#semantic-class">semantic class</a> to <code>callback.file-browser.action-menu</code>.</p>
+
+<p>An example of a command that appear in the file browser’s action menu is <em>Bundles → Shell Script → Open Terminal</em> (<kbd class='keyEquivalent'>⌃⇧O</kbd>). The <em>Compress Selected Items</em> and <em>Show Images</em> are also bundle commands.</p>
+<!-- TODO Improve how commands are setup to be used in the file browser -->
+<!-- TODO Document what file browser commands can expect in terms of variables and input/output -->
+
+<p><hr></p>
+
+<h1 id="version-control">3 Version Control</h1>
+
+<p>TextMate will detect when a project is using Git, Mercurial, Subversion, or Perforce. When detected, it will add <code>attr.scm.«system»</code> as an <a href="scopes.html#attribute-scope">attribute scope</a>. This is to allow the proper bundle to be active, for example the actions in the Git bundle has a scope selector of <code>attr.scm.git</code> so that they only show under <em>Bundles → SCM</em> (<kbd class='keyEquivalent'>⌘Y</kbd>) when TextMate has detected, that git is used as version control system.</p>
+
+<p>For Git, Mercurial, and Subversion, TextMate will call out to the appropriate shell command which, for each of the respective version control systems, can be set as the following <a href="variables.html#variables">variables</a>: <code>TM_GIT</code>, <code>TM_HG</code>, and <code>TM_SVN</code>. If no variable is set, TextMate will try to find the shell command via the <a href="">search path</a>.</p>
+
+<p>TextMate asks the version control system for a few values, which are exposed both as <a href="">dynamic variables</a> of the form <code>TM_SCM_«variable»</code> and as <code>attr.scm.«variable».«value»</code> <a href="scopes.html#attribute-scope">attribute scopes</a>. For example if the version control system reports that the current branch is <code>master</code> then the <code>TM_SCM_BRANCH</code> variable will be set to <code>master</code> and <code>attr.scm.branch.master</code> will be part of the current scope. The variable is mostly useful for decorating the <a href="projects.html#window-title">window title</a>.</p>
+
+<p>TextMate also asks the version control system for file status. File status is used to add badges to file icons and to show deleted items as ghost items in the file browser, which allow selecting such items before using <em>Bundles → SCM → Commit</em> (<kbd class='keyEquivalent'>⌘Y</kbd>) or <em>Bundles → SCM → Revert…</em> (<kbd class='keyEquivalent'>⌘Y</kbd>). You can see a list of modified and untracked files in your project by selecting <em>Go → SCM Status</em> (<kbd class='keyEquivalent'>⇧⌘Y</kbd>).</p>
+
+<p>TextMate also has bundles for the various version control systems which provide actions to see uncommitted changes, commit changes, and much more. It is outside the scope of this manual to document how each of these bundles work. Though on a general note, the actions will normally work with selected items in the file browser, falling back to entire project if there is no selection, which makes <em>Go → SCM Status</em> (<kbd class='keyEquivalent'>⇧⌘Y</kbd>) a very useful feature along with the <em>Select None</em> (<kbd class='keyEquivalent'>⇧⌘A</kbd>) file browser action.</p>
+
+<p>It is worth mentioning that the line numbers in the diff renderings produced by actions in the Git bundle can be clicked, and will take you to the clicked line.</p>
+
+<p>If for some reason you wish to disable the badges, TextMate’s built-in version control support can be disabled by setting the <code>scmStatus</code> key to <code>false</code> in <code>~/.tm_properties</code>.</p>
+
+<p><hr></p>
+
+<h1 id="searching">4 Searching</h1>
+
+<ul>
+<li>Moving between results (<kbd class='keyEquivalent'>⌘1</kbd>-<kbd class='keyEquivalent'>⌘n</kbd> + <kbd class='keyEquivalent'>⌘G</kbd> / <kbd class='keyEquivalent'>⇧⌘G</kbd>)</li>
+<li>Collapsing all results (<kbd class='keyEquivalent'>⌥⌘1</kbd>)</li>
+<li>Replacement previews (when focus is in “Replace” text field)</li>
+<li>Choosing what to replace (<kbd class='keyEquivalent'>⌥</kbd>-click check boxes)</li>
+<li>Copy matches to clipboard (actions in drop-down menu)</li>
+<li>Searching parent folder (<kbd class='keyEquivalent'>⌘↑</kbd>), TODO Allow navigating recent folders with <kbd class='keyEquivalent'>⌘[</kbd> and <kbd class='keyEquivalent'>⌘]</kbd></li>
+<li>Inserting special characters (tabs and newlines)</li>
+<li>Aborting search</li>
+<li>See Also: Glob String Syntax</li>
+<li>See Also: Format String Syntax, give example with ${1/…/…/} and also use named variables from original match</li>
+</ul>
+
+<h2 id="search-options">4.1 Search Options</h2>
+
+<ul>
+<li>Regular Expression</li>
+<li>Ignore Whitespace</li>
+</ul>
+
+<p><hr></p>
+
+<h1 id="text-editing">5 Text Editing</h1>
+
+<h2 id="navigation">5.1 Navigation</h2>
+
+<ul>
+<li>Word movement (<kbd class='keyEquivalent'>⌥</kbd> + left/right)</li>
+<li>Sub-word movement (<kbd class='keyEquivalent'>⌃</kbd> + left/right)</li>
+<li>Column movement (<kbd class='keyEquivalent'>⌥</kbd> + up/down)</li>
+<li>Paired character movement (<kbd class='keyEquivalent'>⌃</kbd> + up/down)</li>
+<li>Bookmarks</li>
+<li>Symbol chooser (<kbd class='keyEquivalent'>⇧⌘T</kbd>)</li>
+<li>Copy to find clipboard and find next/previous</li>
+<li>See Also: Search Options</li>
+<li>Search history (<kbd class='keyEquivalent'>⌃⌥⌘F</kbd>)</li>
+<li>Freehanded Movement: Activating via mouse (<kbd class='keyEquivalent'>⌥</kbd>-click)</li>
+<li>Incremental search (<kbd class='keyEquivalent'>⌃S</kbd>)</li>
+<li>Symbol Chooser</li>
+</ul>
+
+<h2 id="selection">5.2 Selection</h2>
+
+<ul>
+<li>Select → Word, Scope, Enclosing Typing Pairs</li>
+<li>Wrapping selection: paired characters, HTML tags, indent and surround in block (<kbd>{</kbd>)</li>
+<li>Unwrapping selection: paired characters (<kbd>]</kbd>), decrease indent and strip block (<kbd>}</kbd>)</li>
+<li>Indenting selection: increase, decrease, estimate</li>
+<li>Moving selected text</li>
+<li>Anchored vs unanchored selections (for extending)</li>
+</ul>
+
+<h2 id="multiple-carets">5.3 Multiple Carets</h2>
+
+<ul>
+<li>How to activate via: mouse, column selection + movement, column selection + unit selection, search actions, find next and extend selection</li>
+<li>Behavior with multiple carets: find next, copy/paste, etc.</li>
+<li>How to get back to a single caret</li>
+</ul>
+
+<h2 id="cut-copy-and-paste">5.4 Cut, Copy, and Paste</h2>
+
+<ul>
+<li>Paste previous, next, and show clipboard history</li>
+<li>Paste with/without re-indent</li>
+<li>Configuring how to re-indent</li>
+<li>Duplicating text (<kbd class='keyEquivalent'>⌃⇧D</kbd>)</li>
+<li>Kill and yank</li>
+</ul>
+
+<h2 id="buffer-completion">5.5 Buffer Completion</h2>
+
+<p>The current word adfix is taken into consideration when hitting escape.</p>
+
+<p>For example in this case:</p>
+
+<pre><code>enum mark_t { kErrorMarkType, kWarningMarkType };
+mark_t m = ‸MarkType;
+</code></pre>
+
+<p>The resulting line will become:</p>
+
+<pre><code>mark_t m = kWarning‸MarkType;
+</code></pre>
+
+<p>See also: Completion Commands</p>
+
+<h2 id="macros">5.6 Macros</h2>
+
+<ul>
+<li>Record, replay, and save</li>
+</ul>
+
+<h2 id="auto-indenting-text">5.7 Auto-indenting Text</h2>
+
+<ul>
+<li>How to configure</li>
+<li>How to disable</li>
+</ul>
+
+<h2 id="transposing-text">5.8 Transposing Text</h2>
+
+<ul>
+<li><kbd class='keyEquivalent'>⌃T</kbd>: Swap characters / lines</li>
+<li><kbd class='keyEquivalent'>⌃T</kbd>: Reverse characters in line / lines in selection</li>
+<li><kbd class='keyEquivalent'>⌃T</kbd>: Cycle (swap) selected words</li>
+</ul>
+
+<h2 id="spell-checking">5.9 Spell Checking</h2>
+
+<ul>
+<li>Selecting spelling suggestions (<kbd class='keyEquivalent'>⌥F2</kbd>)</li>
+<li>Disabling spell checking for scopes</li>
+<li>Setting default language for folders/files</li>
+<li>Correcting misspelled words (<kbd class='keyEquivalent'>⌥F2</kbd> or right-click)</li>
+</ul>
+
+<h2 id="shell-command-filters">5.10 Shell Command Filters</h2>
+
+<ul>
+<li>Filtering through shell command (<kbd class='keyEquivalent'>⌘|</kbd>)</li>
+</ul>
+
+<h2 id="dropping-items">5.11 Dropping Items</h2>
+
+<ul>
+<li>Meaning of dragging (to document) with modifiers</li>
+<li>See Also: Drag Commands</li>
+</ul>
+
+<p><hr></p>
+
+<h1 id="snippets">6 Snippets</h1>
+
+<pre><code>$«int»
+${«int»}
+${«int»:«snippet»}
+${«int»/«regexp»/«format»/«options»}
+${«int»|«choice 1»,…,«choice n»|}
+
+`«code»`
+</code></pre>
+
+<p>See also: <a href="references.html#format-string">format string</a>.</p>
+
+<p><hr></p>
+
+<h1 id="commands">7 Commands</h1>
+
+<ul>
+<li>Commands with non-zero exit code treated as error</li>
+<li>Current working directory</li>
+</ul>
+
+<h2 id="drag-commands">7.1 Drag Commands</h2>
+
+<ul>
+<li>Dropping multiple files</li>
+</ul>
+
+<h2 id="writing-commands">7.2 Writing Commands</h2>
+
+<ul>
+<li>Use <code>TM_«tool»</code> and use it without quotes if there is a chance the tool might be multiple tools.</li>
+</ul>
+
+<p><hr></p>
+
+<h1 id="html-output">8 HTML Output</h1>
+
+<ul>
+<li>Searching via <kbd class='keyEquivalent'>⌘F</kbd> (works)</li>
+<li>Clipboard history (also applies to HTML output)</li>
+<li>See also: <a href="printing.html#printing-processed-output">Printing Processed Output</a>.</li>
+</ul>
+
+<h2 id="html-output-theme">8.1 HTML Output Theme</h2>
+
+<ul>
+<li>Themes bundle, <code>TM_THEME_PATH</code>.</li>
+</ul>
+
+<h2 id="javascript-api">8.2 JavaScript API</h2>
+
+<p>The <code>TextMate</code> object has the following methods available:</p>
+
+<pre><code>system()                 See below for information.
+log(msg)                 Adds a message to the system console (using NSLog).
+open(path, options)      Opens a file on disk as a document in the current application.
+                         options may be either a selection range string or a (line) number.
+</code></pre>
+
+<p>In addition, these properties are exposed:</p>
+
+<pre><code>busy       (boolean)     The busy spinner in the output window will be displayed when this is true.
+progress   (double, 0-1) Controls the value displayed in the determinate progress indicator.
+</code></pre>
+
+<h3 id="textmatesystem">8.2.1 TextMate.system()</h3>
+
+<p>Also see <a href="http://developer.apple.com/documentation/AppleApplications/Conceptual/Dashboard_ProgTopics/Articles/CommandLine.html">http://developer.apple.com/documentation/AppleApplications/Conceptual/Dashboard_ProgTopics/Articles/CommandLine.html</a>.</p>
+
+<h3 id="synchronous-operation">8.2.2 Synchronous Operation</h3>
+
+<p>Example:</p>
+
+<pre><code>obj = TextMate.system(&quot;/usr/bin/id -un&quot;, null);
+</code></pre>
+
+<p>Result is an object with following properties:</p>
+
+<pre><code>outputString:  The output of the command, as placed on stdout.
+errorString:   The output of the command, as placed on stderr.
+status:        The exit status of the command.
+</code></pre>
+
+<h3 id="asynchronous-operation">8.2.3 Asynchronous Operation</h3>
+
+<p>Example:</p>
+
+<pre><code>obj = TextMate.system(&quot;/usr/bin/id -un&quot;, handler);
+</code></pre>
+
+<p>Handler is called when the command is finished and given an object with the following properties:</p>
+
+<pre><code>outputString:  The last output of the command, as placed on stdout.
+errorString:   The last output of the command, as placed on stderr.
+status:        The exit status of the command.
+</code></pre>
+
+<p>Result is an object with following properties/methods:</p>
+
+<pre><code>outputString:  The current string written to stdout (standard output) by the command.
+errorString:   The current string written to stderr (standard error output) by the command.
+status:        The command’s exit status, as defined by the command.
+onreadoutput:  A function called whenever the command writes to stdout. The handler must accept a single argument; when called, the argument contains the current string placed on stdout.
+onreaderror:   A function called whenever the command writes to stderr. The handler must accept a single argument; when called, the argument contains the current string placed on stderr.
+cancel():      Cancels the execution of the command.
+write(string): Writes a string to stdin (standard input).
+close():       Closes stdin (EOF).
+</code></pre>
+
+<p><hr></p>
+
+<h1 id="showing-dialogs">9 Showing Dialogs</h1>
+
+<h2 id="dialog">9.1 Dialog</h2>
+
+<h2 id="commit-window">9.2 Commit Window</h2>
+
+<p><hr></p>
+
+<h1 id="printing">10 Printing</h1>
+
+<h2 id="printing-plain-text">10.1 Printing Plain Text</h2>
+
+<p>If you wish to print text or produce a PDF from your document then you can select <em>File → Print…</em> (<kbd class='keyEquivalent'>⌘P</kbd>) to bring up the system’s standard printing sheet.</p>
+
+<p>Text will be syntax highlighted using the theme selected but since TextMate does not do background fills during printing, you should avoid selecting a theme that is made to draw light text on a dark background.</p>
+
+<p>The current document font, with a point size of 11, is used for printing. You can adjust the scale factor if you wish to change the text size. To change the font itself you need to change the document font before bringing up the print dialog, this is done using the font panel available as <em>View → Font → Show Fonts</em>.</p>
+
+<p>Margins can be increased by selecting <code>Manage Custom Sizes…</code> from the <code>Paper Size</code> pop-up button. Create a new size with the same dimensions as your normal paper and increase the values for the non-printable area.</p>
+
+<p>If you miss some of the options mentioned above then you may need to select <code>Show Details</code>.</p>
+<!-- TODO Document which global styles can affect printing -->
+
+<h2 id="printing-processed-output">10.2 Printing Processed Output</h2>
+
+<p>Some text formats, like Markdown and reStructuredText, are meant to be converted into other formats, often HTML. TextMate normally offers a preview action (bound to <kbd class='keyEquivalent'>⌃⌥⌘P</kbd>) which will show the styled text in an <a href="html-output.html#html-output">HTML output</a> window.</p>
+
+<p>After the output window appears, you can print the content using the standard printing sheet available by selecting <em>File → Print…</em> (<kbd class='keyEquivalent'>⌘P</kbd>).</p>
+
+<p>Output is using the print styles from the current <a href="html-output.html#html-output-theme">HTML output theme</a>.</p>
+
+<p>This functionality is also available for generated PDF documents created by actions like <em>Bundles → LaTeX → Typeset &amp; View</em> (<kbd class='keyEquivalent'>⌘R</kbd>).</p>
+
+<p><hr></p>
+
+<h1 id="saving-files">11 Saving Files</h1>
+
+<ul>
+<li>Brace expansion: <code>source.{cc,h}</code></li>
+<li>Extended attributes (how to disable)</li>
+<li>Saving when TextMate loses focus</li>
+<li>Export commands and will/did save callbacks</li>
+</ul>
+
+<p><hr></p>
+
+<h1 id="bundles">12 Bundles</h1>
+
+<ul>
+<li>Installing bundles (Preferences → Bundles)</li>
+<li>Locations and delta format</li>
+<li>Distributing bundles</li>
+<li>Getting your bundle added to the index</li>
+<li>Reverting to default bundles</li>
+</ul>
+
+<h2 id="finding-bundle-items">12.1 Finding Bundle Items</h2>
+
+<ul>
+<li>Title/key equivalent search (<kbd class='keyEquivalent'>⌃⌘T</kbd>)</li>
+<li>Editing found item (<kbd class='keyEquivalent'>⌥↩</kbd>)</li>
+</ul>
+
+<h2 id="general-actions">12.2 General Actions</h2>
+
+<ul>
+<li>Diff actions</li>
+<li>Math actions</li>
+<li>TODO actions</li>
+<li>Paste Online</li>
+<li>Sorting</li>
+<li>See Also: Version Control</li>
+</ul>
+
+<h2 id="source-actions">12.3 Source Actions</h2>
+
+<ul>
+<li>Build/Run: Running untitled documents (<kbd class='keyEquivalent'>⌘B</kbd>/<kbd class='keyEquivalent'>⌘R</kbd>)</li>
+<li>Documentation for Word (<kbd class='keyEquivalent'>⌃H</kbd>)</li>
+<li>Validate Syntax (<kbd class='keyEquivalent'>⌃⇧V</kbd>)</li>
+<li>Commenting/uncommenting: How to configure</li>
+<li>Toggle single/double quotes or <code>camelCase</code>/<code>snake_case</code></li>
+<li>Aligning assignments</li>
+<li>Insert line-terminator and/or newline</li>
+</ul>
+
+<h2 id="bundle-editor">12.4 Bundle Editor</h2>
+
+<ul>
+<li>How to create new items: <kbd class='keyEquivalent'>⌘N</kbd></li>
+</ul>
+
+<h2 id="requirements">12.5 Requirements</h2>
+
+<ul>
+<li>Requiring shell commands</li>
+<li>Requiring other bundles</li>
+</ul>
+
+<p>The following can be added to a bundle item (setting it for a bundle’s <code>info.plist</code> is equivalent to setting it for each item in that bundle):</p>
+
+<pre><code>require = ( { name = «name»; uuid = «uuid»; }, … );
+</code></pre>
+
+<p>The UUID is that of the bundle or bundle item required. The name is the name under which the required item should be available (more or less), this only make sense when the UUID is that of a grammar or bundle, see details below. The name defaults to the bundle’s or bundle item’s name, except for grammars, where it is the root scope for the grammar.</p>
+
+<p>If the UUID is that of a bundle item, TextMate ensures that the item and bundle containing it, when the item with the requirement is “executed”, is available.</p>
+
+<p>If the UUID is that of a bundle, TextMate ensures that the bundle is available and will set <code>TM_«name»_BUNDLE_SUPPORT</code> when “executing” the item with the requirement. It will uppercase the name provided.</p>
+
+<h3 id="examples">12.5.1 Examples</h3>
+
+<p>To be able to use <code>include = 'source.c';</code> in the Objective-C grammar, it should have the following requirement:</p>
+
+<pre><code>require = (
+   {  name = 'source.c';
+      uuid = '25066DC2-6B1D-11D9-9D5B-000D93589AF6';
+   }
+)
+</code></pre>
+
+<p>The Subversion bundle’s <code>info.plist</code> could contain the following:</p>
+
+<pre><code>require = (
+   {  name = 'Dialog';
+      uuid = 'F985E884-C6F4-4FB1-B7F6-447A72ECF267';
+   }
+)
+</code></pre>
+
+<p>This ensures that the bundle providing a ruby interface to the Dialog system is available and that commands in the Subversion bundle written in ruby can do:</p>
+
+<pre><code>require &quot;#{ENV['TM_DIALOG_BUNDLE_SUPPORT']}/lib/ui&quot;
+⋮
+TextMate::UI.show_menu(…)
+</code></pre>
+
+<p><hr></p>
+
+<h1 id="presentation">13 Presentation</h1>
+
+<ul>
+<li>Indented soft wrap</li>
+<li>Changed font sizes</li>
+<li>See also: Web Output Themes</li>
+<li>Foldings</li>
+</ul>
+
+<p><hr></p>
+
+<h1 id="language-grammars">14 Language Grammars</h1>
+
+<ul>
+<li>Begin/while rules</li>
+<li>Including from other grammars</li>
+<li>The meaning of <code>\G</code></li>
+<li>Rules on captures</li>
+</ul>
+
+<h2 id="injected-grammars">14.1 Injected Grammars</h2>
+
+<ul>
+<li>TODO, RFC, URLs</li>
+<li>How to open URLs (<kbd class='keyEquivalent'>⌅</kbd> or fn-return)</li>
+</ul>
+
+<h2 id="file-type-detection">14.2 File Type Detection</h2>
+
+<p><hr></p>
+
+<h1 id="scopes">15 Scopes</h1>
+
+<ul>
+<li>Introduction to scopes blog post</li>
+</ul>
+
+<h2 id="attribute-scope">15.1 Attribute Scope</h2>
+
+<ul>
+<li>SCM scopes: <code>attr.scm.*</code>.</li>
+<li>Build system scopes (Makefile, Xcode, etc.): <code>attr.project.*</code>.</li>
+<li><code>attr.rev-path</code>, <code>attr.os-version</code>.</li>
+<li><code>attr.untitled</code>, <code>attr.file.unknown-encoding</code>, <code>attr.unknown-filetype</code>.</li>
+</ul>
+
+<h2 id="dynamic-scope">15.2 Dynamic Scope</h2>
+
+<ul>
+<li><p>Left scope: <code>dyn.caret.begin.(line|document)</code>, right scope: <code>dyn.caret.end.(line|document)</code>.</p></li>
+<li><p>Misspelled words: <code>dyn.misspelled</code>.</p></li>
+<li><p>Mouse-clicks: <code>dyn.modifier.(shift|control|option|command)</code>.</p></li>
+<li><p>The scope contains <code>dyn.selection</code> and/or <code>dyn.caret.*</code> based on the following rules:</p>
+
+<ul>
+<li>If there is one or more selections: <code>dyn.selection</code>.</li>
+<li>If there is a single zero-width selection: <code>dyn.caret.mixed.columnar</code>.</li>
+<li>If there are multiple carets and/or selections: <code>dyn.caret.mixed</code>.</li>
+</ul></li>
+</ul>
+
+<p><hr></p>
+
+<h1 id="variables">16 Variables</h1>
+
+<p><hr></p>
+
+<h1 id="settings">17 Settings</h1>
+
+<h2 id="file-settings">17.1 File Settings</h2>
+
+<ul>
+<li><code>.tm_properties</code></li>
+<li>Recording defaults (<code>Global.tmProperties</code>)</li>
+<li>Section selectors: scope selector or glob. Multiple values.</li>
+<li>Precedence.</li>
+</ul>
+
+<p>The grammar used to parse the <code>.tm_properties</code> files are as below. Whitespace (in the form of spaces or tabs) is allowed between elements.</p>
+
+<pre><code>file:          ( «line» )*
+line:          ( «comment» | ( «section» | «assignment» )? ( «comment» )? ) ( '\n' | EOF )
+section:       '[' «name» ( &quot;;&quot; «name» )* ']'
+name:          ( /[^\] \t\n]/ | /\\[\] \t\n\\]/ )+
+assignment:    «key» '=' «value»
+key:           ( /[^= \t\n]/ | /\\[= \t\n\\]/ )+
+value:         ( «single_string» | «double_string» | «bare_string» )
+single_string: &quot;'&quot; ( /[^']/ | /\\['\\]/ )* &quot;'&quot;
+double_string: '&quot;' ( /[^&quot;]/ | /\\[&quot;\\]/ )* '&quot;'
+bare_string:   ( /[^ \t\n]/ | /\\[ \t\n\\]/ )+
+comment:       '#' ( /[^\n]/ )*
+</code></pre>
+
+<h3 id="filtering-files">17.1.1 Filtering Files</h3>
+
+<ul>
+<li>File chooser</li>
+<li>File browser</li>
+<li>Folder search</li>
+</ul>
+
+<h2 id="scope-settings">17.2 Scope Settings</h2>
+
+<ul>
+<li>Pattern based highlight pairs (for movement)</li>
+<li>Indent based foldings</li>
+<li>Character classes (for completion, word movement, etc.)</li>
+<li>Indented soft wrap</li>
+</ul>
+
+<h2 id="hidden-settings">17.3 Hidden Settings</h2>
+
+<ul>
+<li>line height, anti-alias, extended attributes, etc.</li>
+</ul>
+
+<h2 id="key-bindings">17.4 Key Bindings</h2>
+
+<ul>
+<li>Location of key binding files</li>
+<li>Keybinding syntax</li>
+<li>Indent aware movement actions</li>
+<li>Find and extend selection actions</li>
+</ul>
+
+<p><hr></p>
+
+<h1 id="concepts">18 Concepts</h1>
+
+<h2 id="proxy-item">18.1 Proxy Item</h2>
+
+<ul>
+<li>SCM bundle</li>
+<li>Generic build action etc. (work in progress)</li>
+</ul>
+
+<h2 id="semantic-class">18.2 Semantic Class</h2>
+
+<ul>
+<li>Import/export commands, e.g. Binary Property List</li>
+<li>Will/did save callbacks, e.g. Make Script Executable</li>
+</ul>
+
+<h2 id="encoding">18.3 Encoding</h2>
+
+<ul>
+<li>Byte order mark / endian: UTF&#8211;8, UTF&#8211;16, UTF&#8211;32.</li>
+<li><code>.tm_properties</code>: <code>attr.file.unknown-encoding</code>.</li>
+<li>Extended attributes: <code>com.apple.Encoding</code>.</li>
+<li>Line endings</li>
+</ul>
+
+<p>TextMate will do a few tests against your file:</p>
+
+<ol>
+<li>Does it have an UTF&#8211;8/16/32 BE/LE BOM?
+<em>Do not take this to mean that UTF&#8211;8 BOMs are fine!</em></li>
+<li>Does it have a <code>com.apple.TextEncoding</code> extended attribute?</li>
+<li>Does it have an <code>encoding</code> setting via <code>.tm_properties</code>?</li>
+<li>Is it valid ASCII/UTF&#8211;8?</li>
+</ol>
+
+<p>If all of these tests fail, it will ask you to pick the proper encoding.</p>
+
+<p><hr></p>
+
+<h1 id="references">19 References</h1>
+
+<h2 id="scope-selector">19.1 Scope Selector</h2>
+
+<p>The scope selector syntax is as follows:</p>
+
+<pre><code>atom:         «string» | '*'
+scope:        «atom» ('.' «atom»)*
+path:         '^'? «scope» ('&gt;'? «scope»)* '$'?
+group:        '(' «selector» ')'
+filter:       (&quot;L:&quot;|&quot;R:&quot;|&quot;B:&quot;) («group» | «path»)
+expression:   '-'? («filter» | «group» | «path»)
+composite:    «expression» ([|&amp;-] «expression»)*
+selector:     «composite» (',' «composite»)*
+</code></pre>
+
+<ul>
+<li>Left/right scope matching</li>
+<li>Begin/end anchoring, ignoring attribute scopes</li>
+<li>Wildcard matching</li>
+<li>Descendent selector</li>
+</ul>
+
+<h2 id="format-string">19.2 Format String</h2>
+
+<pre><code>$«var»
+${«var»}
+${«var»:?«if»:«else»}
+${«var»:+«if»}
+${«var»:-«else»}
+${«var»:«else»}
+${«var»/«regexp»/«format»/«options»}
+${«var»:[/upcase][/downcase][/capitalize][/asciify]}
+
+(?«var»:«if»:«else»}
+(?«var»:«if»}
+
+\U, \L, \E, \u, \l
+\n, \t
+</code></pre>
+
+<ul>
+<li>Used for: grammar names, <code>.tm_properties</code> values, Preferences → Variables, replacement strings</li>
+</ul>
+
+<h2 id="glob-string">19.3 Glob String</h2>
+
+<pre><code>\«char»         -- Literal «char»
+?               -- Match one character
+*               -- Match zero or more characters¹
+**              -- Match zero or more path components
+{«a»,«b»,«c»}   -- Match «a» or «b» or «c»
+[«a»«b»«c»]     -- Match an «a», «b» or «c» character
+[«a»-«b»]       -- Match one character in the range «a»-«b»
+[^«a»-«b»]      -- Match one character not in the range «a»-«b»
+</code></pre>
+
+<p>Braces can be nested and contain other glob characters. Example:</p>
+
+<pre><code>{*.{cc,mm,h},target,Makefile,.tm_properties}
+</code></pre>
+
+<p>Will match these files:</p>
+
+<pre><code>source.cc
+source.mm
+source.h
+target
+Makefile
+.tm_properties
+</code></pre>
+
+<p>¹ The asterisk will not match slashes nor a leading period.</p>
+
+<ul>
+<li>Used in <code>.tm_properties</code>, find in folder</li>
+</ul>
+
+<h2 id="selection-string">19.4 Selection String</h2>
+
+<pre><code>selection    = «range» ('&amp;' «range»)*
+range        = «pos» | «normal_range» | «column_range»
+pos          = «line» (':' «column»)? ('+' «offset»)?
+normal_range = «pos» '-' «pos»
+column_range = «pos» 'x' «pos»
+line         = [1-9][0-9]*
+column       = [1-9][0-9]*
+offset       = [1-9][0-9]*
+</code></pre>
+
+<p>This can be used with <code>mate -l</code>, <em>Go to Line…</em>, and the <kbd class='keyEquivalent'>⌘T</kbd> dialog (by putting <code>:«selection string»</code> after the file name) — as for the latter, if a string on the find clipboard has this format, it will be the default value in <kbd class='keyEquivalent'>⌘T</kbd>, this is useful if you have a line in Terminal like:</p>
+
+<pre><code>main.cc:32: warning: no return statement.
+</code></pre>
+
+<p>You can then select <code>main.cc:32</code> press <kbd class='keyEquivalent'>⌘E</kbd> and jump to Avian and press <kbd class='keyEquivalent'>⌘T</kbd> followed by <kbd class='keyEquivalent'>↩</kbd> (one shortcoming is that <kbd class='keyEquivalent'>⌘T</kbd> doesn’t show the currently open file, so it will only work if <code>main.cc</code> is not already the active file).</p>
+
+<h2 id="modified-property-list">19.5 Modified Property List</h2>

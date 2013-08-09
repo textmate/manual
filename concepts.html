@@ -1,0 +1,68 @@
+<p><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class='chapter_links'></p>
+
+<ul>
+<li><span class='previous_chapter_link'><a href="settings.html">Settings</a></span></li>
+<li><span class='toc_link'><a href="index.html">Table of Contents</a></span></li>
+<li><span class='next_chapter_link'><a href="references.html">Scope Selector</a></span></li>
+</ul>
+
+<p></div>
+<div class='toc_links'></p>
+
+<ul>
+<li>18 <a href="#concepts">Concepts</a>
+
+<ul>
+<li>18.1 <a href="#proxy-item">Proxy Item</a></li>
+<li>18.2 <a href="#semantic-class">Semantic Class</a></li>
+<li>18.3 <a href="#encoding">Encoding</a></li>
+</ul></li>
+</ul>
+
+<p></div></p>
+
+<h1 id="concepts">18 Concepts</h1>
+
+<h2 id="proxy-item">18.1 Proxy Item</h2>
+
+<ul>
+<li>SCM bundle</li>
+<li>Generic build action etc. (work in progress)</li>
+</ul>
+
+<h2 id="semantic-class">18.2 Semantic Class</h2>
+
+<ul>
+<li>Import/export commands, e.g. Binary Property List</li>
+<li>Will/did save callbacks, e.g. Make Script Executable</li>
+</ul>
+
+<h2 id="encoding">18.3 Encoding</h2>
+
+<ul>
+<li>Byte order mark / endian: UTF&#8211;8, UTF&#8211;16, UTF&#8211;32.</li>
+<li><code>.tm_properties</code>: <code>attr.file.unknown-encoding</code>.</li>
+<li>Extended attributes: <code>com.apple.Encoding</code>.</li>
+<li>Line endings</li>
+</ul>
+
+<p>TextMate will do a few tests against your file:</p>
+
+<ol>
+<li>Does it have an UTF&#8211;8/16/32 BE/LE BOM?
+<em>Do not take this to mean that UTF&#8211;8 BOMs are fine!</em></li>
+<li>Does it have a <code>com.apple.TextEncoding</code> extended attribute?</li>
+<li>Does it have an <code>encoding</code> setting via <code>.tm_properties</code>?</li>
+<li>Is it valid ASCII/UTF&#8211;8?</li>
+</ol>
+
+<p>If all of these tests fail, it will ask you to pick the proper encoding.</p>
+<div class='chapter_links'>
+
+<ul>
+<li><span class='previous_chapter_link'><a href="settings.html">Settings</a></span></li>
+<li><span class='toc_link'><a href="index.html">Table of Contents</a></span></li>
+<li><span class='next_chapter_link'><a href="references.html">Scope Selector</a></span></li>
+</ul>
+</div>

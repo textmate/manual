@@ -1,0 +1,60 @@
+<p><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class='chapter_links'></p>
+
+<ul>
+<li><span class='previous_chapter_link'><a href="language-grammars.html">Language Grammars</a></span></li>
+<li><span class='toc_link'><a href="index.html">Table of Contents</a></span></li>
+<li><span class='next_chapter_link'><a href="settings.html">Settings</a></span></li>
+</ul>
+
+<p></div>
+<div class='toc_links'></p>
+
+<ul>
+<li>15 <a href="#scopes">Scopes</a>
+
+<ul>
+<li>15.1 <a href="#attribute-scope">Attribute Scope</a></li>
+<li>15.2 <a href="#dynamic-scope">Dynamic Scope</a></li>
+</ul></li>
+</ul>
+
+<p></div></p>
+
+<h1 id="scopes">15 Scopes</h1>
+
+<ul>
+<li>Introduction to scopes blog post</li>
+</ul>
+
+<h2 id="attribute-scope">15.1 Attribute Scope</h2>
+
+<ul>
+<li>SCM scopes: <code>attr.scm.*</code>.</li>
+<li>Build system scopes (Makefile, Xcode, etc.): <code>attr.project.*</code>.</li>
+<li><code>attr.rev-path</code>, <code>attr.os-version</code>.</li>
+<li><code>attr.untitled</code>, <code>attr.file.unknown-encoding</code>, <code>attr.unknown-filetype</code>.</li>
+</ul>
+
+<h2 id="dynamic-scope">15.2 Dynamic Scope</h2>
+
+<ul>
+<li><p>Left scope: <code>dyn.caret.begin.(line|document)</code>, right scope: <code>dyn.caret.end.(line|document)</code>.</p></li>
+<li><p>Misspelled words: <code>dyn.misspelled</code>.</p></li>
+<li><p>Mouse-clicks: <code>dyn.modifier.(shift|control|option|command)</code>.</p></li>
+<li><p>The scope contains <code>dyn.selection</code> and/or <code>dyn.caret.*</code> based on the following rules:</p>
+
+<ul>
+<li>If there is one or more selections: <code>dyn.selection</code>.</li>
+<li>If there is a single zero-width selection: <code>dyn.caret.mixed.columnar</code>.</li>
+<li>If there are multiple carets and/or selections: <code>dyn.caret.mixed</code>.</li>
+</ul></li>
+</ul>
+<div class='chapter_links'>
+
+<ul>
+<li><span class='previous_chapter_link'><a href="language-grammars.html">Language Grammars</a></span></li>
+<li><span class='toc_link'><a href="index.html">Table of Contents</a></span></li>
+<li><span class='next_chapter_link'><a href="settings.html">Settings</a></span></li>
+</ul>
+</div>

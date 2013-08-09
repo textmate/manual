@@ -1,0 +1,147 @@
+<p><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class='chapter_links'></p>
+
+<ul>
+<li><span class='previous_chapter_link'><a href="searching.html">Searching</a></span></li>
+<li><span class='toc_link'><a href="index.html">Table of Contents</a></span></li>
+<li><span class='next_chapter_link'><a href="commands.html">Commands</a></span></li>
+</ul>
+
+<p></div>
+<div class='toc_links'></p>
+
+<ul>
+<li>5 <a href="#text-editing">Text Editing</a>
+
+<ul>
+<li>5.1 <a href="#navigation">Navigation</a></li>
+<li>5.2 <a href="#selection">Selection</a></li>
+<li>5.3 <a href="#multiple-carets">Multiple Carets</a></li>
+<li>5.4 <a href="#cut-copy-and-paste">Cut, Copy, and Paste</a></li>
+<li>5.5 <a href="#buffer-completion">Buffer Completion</a></li>
+<li>5.6 <a href="#macros">Macros</a></li>
+<li>5.7 <a href="#auto-indenting-text">Auto-indenting Text</a></li>
+<li>5.8 <a href="#transposing-text">Transposing Text</a></li>
+<li>5.9 <a href="#spell-checking">Spell Checking</a></li>
+<li>5.10 <a href="#shell-command-filters">Shell Command Filters</a></li>
+<li>5.11 <a href="#dropping-items">Dropping Items</a></li>
+</ul></li>
+</ul>
+
+<p></div></p>
+
+<h1 id="text-editing">5 Text Editing</h1>
+
+<h2 id="navigation">5.1 Navigation</h2>
+
+<ul>
+<li>Word movement (<kbd class='keyEquivalent'>⌥</kbd> + left/right)</li>
+<li>Sub-word movement (<kbd class='keyEquivalent'>⌃</kbd> + left/right)</li>
+<li>Column movement (<kbd class='keyEquivalent'>⌥</kbd> + up/down)</li>
+<li>Paired character movement (<kbd class='keyEquivalent'>⌃</kbd> + up/down)</li>
+<li>Bookmarks</li>
+<li>Symbol chooser (<kbd class='keyEquivalent'>⇧⌘T</kbd>)</li>
+<li>Copy to find clipboard and find next/previous</li>
+<li>See Also: Search Options</li>
+<li>Search history (<kbd class='keyEquivalent'>⌃⌥⌘F</kbd>)</li>
+<li>Freehanded Movement: Activating via mouse (<kbd class='keyEquivalent'>⌥</kbd>-click)</li>
+<li>Incremental search (<kbd class='keyEquivalent'>⌃S</kbd>)</li>
+<li>Symbol Chooser</li>
+</ul>
+
+<h2 id="selection">5.2 Selection</h2>
+
+<ul>
+<li>Select → Word, Scope, Enclosing Typing Pairs</li>
+<li>Wrapping selection: paired characters, HTML tags, indent and surround in block (<kbd>{</kbd>)</li>
+<li>Unwrapping selection: paired characters (<kbd>]</kbd>), decrease indent and strip block (<kbd>}</kbd>)</li>
+<li>Indenting selection: increase, decrease, estimate</li>
+<li>Moving selected text</li>
+<li>Anchored vs unanchored selections (for extending)</li>
+</ul>
+
+<h2 id="multiple-carets">5.3 Multiple Carets</h2>
+
+<ul>
+<li>How to activate via: mouse, column selection + movement, column selection + unit selection, search actions, find next and extend selection</li>
+<li>Behavior with multiple carets: find next, copy/paste, etc.</li>
+<li>How to get back to a single caret</li>
+</ul>
+
+<h2 id="cut-copy-and-paste">5.4 Cut, Copy, and Paste</h2>
+
+<ul>
+<li>Paste previous, next, and show clipboard history</li>
+<li>Paste with/without re-indent</li>
+<li>Configuring how to re-indent</li>
+<li>Duplicating text (<kbd class='keyEquivalent'>⌃⇧D</kbd>)</li>
+<li>Kill and yank</li>
+</ul>
+
+<h2 id="buffer-completion">5.5 Buffer Completion</h2>
+
+<p>The current word adfix is taken into consideration when hitting escape.</p>
+
+<p>For example in this case:</p>
+
+<pre><code>enum mark_t { kErrorMarkType, kWarningMarkType };
+mark_t m = ‸MarkType;
+</code></pre>
+
+<p>The resulting line will become:</p>
+
+<pre><code>mark_t m = kWarning‸MarkType;
+</code></pre>
+
+<p>See also: Completion Commands</p>
+
+<h2 id="macros">5.6 Macros</h2>
+
+<ul>
+<li>Record, replay, and save</li>
+</ul>
+
+<h2 id="auto-indenting-text">5.7 Auto-indenting Text</h2>
+
+<ul>
+<li>How to configure</li>
+<li>How to disable</li>
+</ul>
+
+<h2 id="transposing-text">5.8 Transposing Text</h2>
+
+<ul>
+<li><kbd class='keyEquivalent'>⌃T</kbd>: Swap characters / lines</li>
+<li><kbd class='keyEquivalent'>⌃T</kbd>: Reverse characters in line / lines in selection</li>
+<li><kbd class='keyEquivalent'>⌃T</kbd>: Cycle (swap) selected words</li>
+</ul>
+
+<h2 id="spell-checking">5.9 Spell Checking</h2>
+
+<ul>
+<li>Selecting spelling suggestions (<kbd class='keyEquivalent'>⌥F2</kbd>)</li>
+<li>Disabling spell checking for scopes</li>
+<li>Setting default language for folders/files</li>
+<li>Correcting misspelled words (<kbd class='keyEquivalent'>⌥F2</kbd> or right-click)</li>
+</ul>
+
+<h2 id="shell-command-filters">5.10 Shell Command Filters</h2>
+
+<ul>
+<li>Filtering through shell command (<kbd class='keyEquivalent'>⌘|</kbd>)</li>
+</ul>
+
+<h2 id="dropping-items">5.11 Dropping Items</h2>
+
+<ul>
+<li>Meaning of dragging (to document) with modifiers</li>
+<li>See Also: Drag Commands</li>
+</ul>
+<div class='chapter_links'>
+
+<ul>
+<li><span class='previous_chapter_link'><a href="searching.html">Searching</a></span></li>
+<li><span class='toc_link'><a href="index.html">Table of Contents</a></span></li>
+<li><span class='next_chapter_link'><a href="commands.html">Commands</a></span></li>
+</ul>
+</div>
