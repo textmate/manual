@@ -45,19 +45,16 @@ end
 
 def find_reference(ref, index)
   ref = to_reference(ref)
-  index.each do |item|
-    if item[:id] == ref
-      return make_link(item[:file], item[:id])
-    end
-  end
+  index.each { |item| return make_link(item[:file], item[:id]) if item[:id] == ref }
 
   ref = "#$`#{$1.nil? ? 's' : ''}" if ref =~ /(s)?$/
+  index.each { |item| return make_link(item[:file], item[:id]) if item[:id] == ref }
 
-  index.each do |item|
-    if item[:id] == ref
-      return make_link(item[:file], item[:id])
-    end
-  end
+  nil
+end
+
+def find_title(file, index)
+  index.each { |item| return item[:title] if item[:file] == file }
   nil
 end
 
@@ -149,10 +146,12 @@ def write_page(out, index, file)
   out << "\n"
 end
 
-def open_filter(filter, dst)
+def open_filter(filter, dst, title = nil)
   STDERR << "Create ‘#{dst}’…\n"
   open("|#{filter} > #{dst.shellescape}", "w") do |io|
-  	io << "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n"
+    io << "Title: #{title}\n" unless title.nil?
+    io << "CSS: styles.css\n"
+    io << "\n"
     yield(io)
   end
 end
@@ -175,7 +174,7 @@ if __FILE__ == $PROGRAM_NAME
   index = make_index(files)
 
   files.each do |file|
-    open_filter(filter, make_output_file(file, output)) do |io|
+    open_filter(filter, make_output_file(file, output), find_title(file, index)) do |io|
       io << "<div class='chapter_links'>\n\n"
       write_links(io, index, file)
       io << "</div>\n"
@@ -192,13 +191,13 @@ if __FILE__ == $PROGRAM_NAME
     end
   end
 
-  open_filter(filter, File.join(output, "index.html")) do |io|
+  open_filter(filter, File.join(output, "index.html"), "TextMate Manual") do |io|
     io << "<div class='toc'>\n\n"
     write_toc(io, index)
     io << "</div>\n"
   end
 
-  open_filter(filter, File.join(output, "manual.html")) do |io|
+  open_filter(filter, File.join(output, "manual.html"), "TextMate Manual") do |io|
     io << "<div class='toc'>\n\n"
     write_toc(io, index)
     io << "</div>\n"
