@@ -1,11 +1,11 @@
-PAGES = $(wildcard pages/*.md)
+PAGES = $(sort $(wildcard pages/*.md))
 
-all: html/.generated
+default: html/.generated
 
-html/.generated: $(PAGES)
+html/.generated: $(PAGES) | bin/gen_manual
 	bin/gen_manual $^ -o html/ && touch $@
 
 clean:
 	rm -rf html
 
-.PHONY: all clean
+.PHONY: default clean
