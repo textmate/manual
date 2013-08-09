@@ -1,0 +1,4 @@
+windowTitle = "$TM_DISPLAYNAME — TextMate Manual"
+
+[ attr.untitled ]
+fileType = "text.html.markdown"
