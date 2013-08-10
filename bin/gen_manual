@@ -5,145 +5,156 @@ require 'shellwords'
 
 PROGRAM_NAME = File.basename(__FILE__)
 
-def to_reference(title)
-  title.gsub(/[^\w\- ]+/, '').gsub(/ /, '-').downcase
-end
+class GenManual
+  attr_accessor :extension
 
-def make_output_file(file, dir = nil)
-  file = "#$1.html" if file =~ /(?:.*\/)?\d+-(.*)\.\w+$/
-  file = File.join(dir, file) unless dir.nil?
-  file
-end
+  def initialize(files)
+    @extension = true
+    @index     = make_index(files)
+  end
 
-def make_link(file, reference = nil)
-  res = make_output_file(file).dup
-  res << "##{reference}" unless reference.nil? || file == reference
-  res
-end
+  def make_output_file(file, dir = nil)
+    file = "#$1.html" if file =~ /(?:.*\/)?\d+-(.*)\.\w+$/
+    file = File.join(dir, file) unless dir.nil?
+    file
+  end
 
-def make_index(files)
-  res = [ ]
+  def find_title(file)
+    @index.each { |item| return item[:title] if item[:file] == file }
+    nil
+  end
 
-  count = [ ]
-  files.each do |file|
+  def write_toc(out, file = nil)
+    @index.each do |item|
+      if file.nil? || file == item[:file]
+        out << "    " * (item[:section].length-1)
+        out << "  * " << item[:section].join(".")
+        out << " [#{item[:title]}](#{make_link(file.nil? ? item[:file] : '', item[:id])})\n"
+      end
+    end
+    out << "\n"
+  end
+
+  def write_links(out, file)
+    i = @index.find_index { |item| file == item[:file] }
+    return if i.nil?
+
+    unless i == 0
+      j = @index.find_index { |item| item[:file] == @index[i-1][:file] }
+      out << "  * <span class='previous_chapter_link'>[#{@index[j][:title]}](#{make_link(@index[j][:file])})</span>\n" unless j.nil?
+    end
+
+    out << "  * <span class='toc_link'>[Table of Contents](./)</span>\n"
+
+    i += 1 while i < @index.length && file == @index[i][:file]
+    unless i == @index.length
+      out << "  * <span class='next_chapter_link'>[#{@index[i+1][:title]}](#{make_link(@index[i+1][:file])})</span>\n"
+    end
+
+    out << "\n"
+  end
+
+  def write_page(out, file)
+    item = @index.find { |item| file == item[:file] }
+    count = item[:section].dup
+    count[0] -= 1
+
     open(file) do |io|
+      lineno = 0
       io.each do |line|
-        if line =~ /^(#+) (.+)/
+        lineno += 1
+
+        if line =~ /^(#+) (.*)/
           if count.length < $1.length
             count.fill(1, count.length, $1.length - count.length)
           else
             count.pop(count.length - $1.length)
             count[-1] += 1
           end
-          res << { :file => file, :title => $2, :id => to_reference($2), :section => count.dup }
+          line = "#$1 #{count.join('.')} #$2 [#{to_reference($2)}]\n"
         end
-      end
-    end
-  end
-  res
-end
 
-def find_reference(ref, index)
-  ref = to_reference(ref)
-  index.each { |item| return make_link(item[:file], item[:id]) if item[:id] == ref }
-
-  ref = "#$`#{$1.nil? ? 's' : ''}" if ref =~ /(s)?$/
-  index.each { |item| return make_link(item[:file], item[:id]) if item[:id] == ref }
-
-  nil
-end
-
-def find_title(file, index)
-  index.each { |item| return item[:title] if item[:file] == file }
-  nil
-end
-
-def write_toc(out, index, file = nil)
-  index.each do |item|
-    if file.nil? || file == item[:file]
-      out << "    " * (item[:section].length-1)
-      out << "  * " << item[:section].join(".")
-      out << " [#{item[:title]}](#{make_link(file.nil? ? item[:file] : '', item[:id])})\n"
-    end
-  end
-  out << "\n"
-end
-
-def write_links(out, index, file)
-  i = index.find_index { |item| file == item[:file] }
-  return if i.nil?
-
-  unless i == 0
-    j = index.find_index { |item| item[:file] == index[i-1][:file] }
-    out << "  * <span class='previous_chapter_link'>[#{index[j][:title]}](#{make_link(index[j][:file])})</span>\n" unless j.nil?
-  end
-
-  out << "  * <span class='toc_link'>[Table of Contents](index.html)</span>\n"
-
-  i += 1 while i < index.length && file == index[i][:file]
-  unless i == index.length
-    out << "  * <span class='next_chapter_link'>[#{index[i+1][:title]}](#{make_link(index[i+1][:file])})</span>\n"
-  end
-
-  out << "\n"
-end
-
-def wrap_key_equivalents(src)
-  src.gsub(/ `([^`]+⇥)` | \( ([⌃⌥⇧⌘↓↑←→]+) \) | ( [⎋⇥↩⌅⌫⌦] | [⌃⌥⇧⌘]+ ( (?=[ ]|-\w+) | F\d+ | . ) ) /x) do
-    if $1
-      "<kbd class='tabTrigger'>#$1</kbd>"
-    elsif $2
-      "(<kbd class='keyEquivalent'>#{$2.sub(/(?=\[)/, '\\')}</kbd>)"
-    else
-      "<kbd class='keyEquivalent'>#{$&.sub(/(?=\[)/, '\\')}</kbd>"
-    end
-  end
-end
-
-def write_page(out, index, file)
-  item = index.find { |item| file == item[:file] }
-  count = item[:section].dup
-  count[0] -= 1
-
-  open(file) do |io|
-    lineno = 0
-    io.each do |line|
-      lineno += 1
-
-      if line =~ /^(#+) (.*)/
-        if count.length < $1.length
-          count.fill(1, count.length, $1.length - count.length)
-        else
-          count.pop(count.length - $1.length)
-          count[-1] += 1
-        end
-        line = "#$1 #{count.join('.')} #$2 [#{to_reference($2)}]\n"
-      end
-
-      line.gsub!(/:(\w+):`([^`]+)`/) do
-        case $1
-        when 'ref':
-          title = $2
-          if title =~ /(.+) <(.+)>$/
-            title, ref = $1, $2
-          else
-            ref = title
+        line.gsub!(/:(\w+):`([^`]+)`/) do
+          case $1
+          when 'ref':
+            title = $2
+            if title =~ /(.+) <(.+)>$/
+              title, ref = $1, $2
+            else
+              ref = title
+            end
+            link = find_reference(ref)
+            STDERR << "#{file}:#{lineno}: No section for ‘#{ref}’ reference.\n" if link.nil?
+            "[#{title}](#{link.to_s})"
+          when 'menu'
+            title = $2
+            title.gsub(/(.+?)( \(.+\))?$/) do
+              "_#$1_#$2"
+            end
+          else "`#$2`"
           end
-          link = find_reference(ref, index)
-          STDERR << "#{file}:#{lineno}: No section for ‘#{ref}’ reference.\n" if link.nil?
-          "[#{title}](#{link.to_s})"
-        when 'menu'
-          title = $2
-          title.gsub(/(.+?)( \(.+\))?$/) do
-            "_#$1_#$2"
+        end
+        out << wrap_key_equivalents(line)
+      end
+    end
+    out << "\n"
+  end
+
+private
+  def to_reference(title)
+    title.gsub(/[^\w\- ]+/, '').gsub(/ /, '-').downcase
+  end
+
+  def make_link(file, reference = nil)
+    res = make_output_file(file).dup
+    res = res.sub(/\.html$/, '') unless @extension
+    res << "##{reference}" unless reference.nil? || file == reference
+    res
+  end
+
+  def make_index(files)
+    res = [ ]
+
+    count = [ ]
+    files.each do |file|
+      open(file) do |io|
+        io.each do |line|
+          if line =~ /^(#+) (.+)/
+            if count.length < $1.length
+              count.fill(1, count.length, $1.length - count.length)
+            else
+              count.pop(count.length - $1.length)
+              count[-1] += 1
+            end
+            res << { :file => file, :title => $2, :id => to_reference($2), :section => count.dup }
           end
-        else "`#$2`"
         end
       end
-      out << wrap_key_equivalents(line)
+    end
+    res
+  end
+
+  def find_reference(ref)
+    ref = to_reference(ref)
+    @index.each { |item| return make_link(item[:file], item[:id]) if item[:id] == ref }
+
+    ref = "#$`#{$1.nil? ? 's' : ''}" if ref =~ /(s)?$/
+    @index.each { |item| return make_link(item[:file], item[:id]) if item[:id] == ref }
+
+    nil
+  end
+
+  def wrap_key_equivalents(src)
+    src.gsub(/ `([^`]+⇥)` | \( ([⌃⌥⇧⌘↓↑←→]+) \) | ( [⎋⇥↩⌅⌫⌦] | [⌃⌥⇧⌘]+ ( (?=[ ]|-\w+) | F\d+ | . ) ) /x) do
+      if $1
+        "<kbd class='tabTrigger'>#$1</kbd>"
+      elsif $2
+        "(<kbd class='keyEquivalent'>#{$2.sub(/(?=\[)/, '\\')}</kbd>)"
+      else
+        "<kbd class='keyEquivalent'>#{$&.sub(/(?=\[)/, '\\')}</kbd>"
+      end
     end
   end
-  out << "\n"
 end
 
 def open_filter(filter, dst, title = nil)
@@ -159,51 +170,54 @@ end
 if __FILE__ == $PROGRAM_NAME
   output = nil
   filter = 'multimarkdown --process-html'
+  extension = true
 
   OptionParser.new do |opts|
     opts.banner = "Usage: #{PROGRAM_NAME} [options]"
-    opts.on('-o', '--output=directory', 'Destination folder for output.')               { |value| output = value }
-    opts.on('-f', '--output-filter=command', 'Command that output gets piped through.') { |value| filter = value }
-    opts.on_tail('-h', '--help', 'Show this message.')                                  { puts opts; exit        }
+    opts.on('-o', '--output=directory', 'Destination folder for output.')               { |value| output = value    }
+    opts.on('-f', '--output-filter=command', 'Command that output gets piped through.') { |value| filter = value    }
+    opts.on('-h', '--no-extension', 'Do not use a .html extension in links.')           { |value| extension = false }
+    opts.on_tail('-h', '--help', 'Show this message.')                                  { puts opts; exit           }
   end.parse!
 
   abort "#{PROGRAM_NAME}: errror: required option missing (-o/--output)" if output.nil?
   FileUtils.mkdir_p(output)
 
   files = ARGV
-  index = make_index(files)
+  manual = GenManual.new(files)
+  manual.extension = extension
 
   files.each do |file|
-    open_filter(filter, make_output_file(file, output), find_title(file, index)) do |io|
+    open_filter(filter, manual.make_output_file(file, output), manual.find_title(file)) do |io|
       io << "<div class='chapter_links'>\n\n"
-      write_links(io, index, file)
+      manual.write_links(io, file)
       io << "</div>\n"
 
       io << "<div class='toc_links'>\n\n"
-      write_toc(io, index, file)
+      manual.write_toc(io, file)
       io << "</div>\n"
 
-      write_page(io, index, file)
+      manual.write_page(io, file)
 
       io << "<div class='chapter_links'>\n\n"
-      write_links(io, index, file)
+      manual.write_links(io, file)
       io << "</div>\n"
     end
   end
 
   open_filter(filter, File.join(output, "index.html"), "TextMate Manual") do |io|
     io << "<div class='toc'>\n\n"
-    write_toc(io, index)
+    manual.write_toc(io)
     io << "</div>\n"
   end
 
   open_filter(filter, File.join(output, "manual.html"), "TextMate Manual") do |io|
     io << "<div class='toc'>\n\n"
-    write_toc(io, index)
+    manual.write_toc(io)
     io << "</div>\n"
     files.each do |file|
       io << "<hr>\n"
-      write_page(io, index, file)
+      manual.write_page(io, file)
     end
   end
 end
