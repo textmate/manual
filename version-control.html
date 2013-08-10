@@ -10,9 +10,9 @@
 <div class='chapter_links'>
 
 <ul>
-<li><span class='previous_chapter_link'><a href="projects.html">Projects</a></span></li>
-<li><span class='toc_link'><a href="index.html">Table of Contents</a></span></li>
-<li><span class='next_chapter_link'><a href="searching.html">Search Options</a></span></li>
+<li><span class='previous_chapter_link'><a href="projects">Projects</a></span></li>
+<li><span class='toc_link'><a href="./">Table of Contents</a></span></li>
+<li><span class='next_chapter_link'><a href="searching">Search Options</a></span></li>
 </ul>
 </div>
 <div class='toc_links'>
@@ -24,11 +24,11 @@
 
 <h1 id="version-control">3 Version Control</h1>
 
-<p>TextMate will detect when a project is using Git, Mercurial, Subversion, or Perforce. When detected, it will add <code>attr.scm.«system»</code> as an <a href="scopes.html#attribute-scope">attribute scope</a>. This is to allow the proper bundle to be active, for example the actions in the Git bundle has a scope selector of <code>attr.scm.git</code> so that they only show under <em>Bundles → SCM</em> (<kbd class='keyEquivalent'>⌘Y</kbd>) when TextMate has detected, that git is used as version control system.</p>
+<p>TextMate will detect when a project is using Git, Mercurial, Subversion, or Perforce. When detected, it will add <code>attr.scm.«system»</code> as an <a href="scopes#attribute-scope">attribute scope</a>. This is to allow the proper bundle to be active, for example the actions in the Git bundle has a scope selector of <code>attr.scm.git</code> so that they only show under <em>Bundles → SCM</em> (<kbd class='keyEquivalent'>⌘Y</kbd>) when TextMate has detected, that git is used as version control system.</p>
 
-<p>For Git, Mercurial, and Subversion, TextMate will call out to the appropriate shell command which, for each of the respective version control systems, can be set as the following <a href="variables.html#variables">variables</a>: <code>TM_GIT</code>, <code>TM_HG</code>, and <code>TM_SVN</code>. If no variable is set, TextMate will try to find the shell command via the <a href="">search path</a>.</p>
+<p>For Git, Mercurial, and Subversion, TextMate will call out to the appropriate shell command which, for each of the respective version control systems, can be set as the following <a href="variables#variables">variables</a>: <code>TM_GIT</code>, <code>TM_HG</code>, and <code>TM_SVN</code>. If no variable is set, TextMate will try to find the shell command via the <a href="">search path</a>.</p>
 
-<p>TextMate asks the version control system for a few values, which are exposed both as <a href="">dynamic variables</a> of the form <code>TM_SCM_«variable»</code> and as <code>attr.scm.«variable».«value»</code> <a href="scopes.html#attribute-scope">attribute scopes</a>. For example if the version control system reports that the current branch is <code>master</code> then the <code>TM_SCM_BRANCH</code> variable will be set to <code>master</code> and <code>attr.scm.branch.master</code> will be part of the current scope. The variable is mostly useful for decorating the <a href="projects.html#window-title">window title</a>.</p>
+<p>TextMate asks the version control system for a few values, which are exposed both as <a href="">dynamic variables</a> of the form <code>TM_SCM_«variable»</code> and as <code>attr.scm.«variable».«value»</code> <a href="scopes#attribute-scope">attribute scopes</a>. For example if the version control system reports that the current branch is <code>master</code> then the <code>TM_SCM_BRANCH</code> variable will be set to <code>master</code> and <code>attr.scm.branch.master</code> will be part of the current scope. The variable is mostly useful for decorating the <a href="projects#window-title">window title</a>.</p>
 
 <p>TextMate also asks the version control system for file status. File status is used to add badges to file icons and to show deleted items as ghost items in the file browser, which allow selecting such items before using <em>Bundles → SCM → Commit</em> (<kbd class='keyEquivalent'>⌘Y</kbd>) or <em>Bundles → SCM → Revert…</em> (<kbd class='keyEquivalent'>⌘Y</kbd>). You can see a list of modified and untracked files in your project by selecting <em>Go → SCM Status</em> (<kbd class='keyEquivalent'>⇧⌘Y</kbd>).</p>
 
@@ -40,9 +40,9 @@
 <div class='chapter_links'>
 
 <ul>
-<li><span class='previous_chapter_link'><a href="projects.html">Projects</a></span></li>
-<li><span class='toc_link'><a href="index.html">Table of Contents</a></span></li>
-<li><span class='next_chapter_link'><a href="searching.html">Search Options</a></span></li>
+<li><span class='previous_chapter_link'><a href="projects">Projects</a></span></li>
+<li><span class='toc_link'><a href="./">Table of Contents</a></span></li>
+<li><span class='next_chapter_link'><a href="searching">Search Options</a></span></li>
 </ul>
 </div>
 
