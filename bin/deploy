@@ -4,8 +4,9 @@ MANUAL_DST="$(/usr/bin/mktemp -dt manual)"
 trap 'rm -rf "$MANUAL_DST"' EXIT
 
 ( git clone -b gh-pages . "$MANUAL_DST/html" && \
-  cp html/*.html "$MANUAL_DST/html"          && \
+  cp html/*.{html,css} "$MANUAL_DST/html"    && \
   cd "$MANUAL_DST/html"                      && \
-  git commit -am 'Update HTML'               && \
+  git add *.{html,css}                       && \
+  git commit -m 'Update HTML'                && \
   git push                                      \
 ) && git push origin gh-pages

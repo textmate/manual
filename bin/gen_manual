@@ -189,7 +189,7 @@ if __FILE__ == $PROGRAM_NAME
 
   files.each do |file|
     open_filter(filter, manual.make_output_file(file, output), manual.find_title(file)) do |io|
-      io << "<div class='chapter_links'>\n\n"
+      io << "<div class='chapter_links header'>\n\n"
       manual.write_links(io, file)
       io << "</div>\n"
 
@@ -197,9 +197,11 @@ if __FILE__ == $PROGRAM_NAME
       manual.write_toc(io, file)
       io << "</div>\n"
 
+      io << "<div class='content'>\n\n"
       manual.write_page(io, file)
+      io << "</div>\n"
 
-      io << "<div class='chapter_links'>\n\n"
+      io << "<div class='chapter_links footer'>\n\n"
       manual.write_links(io, file)
       io << "</div>\n"
     end
