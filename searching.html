@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<div class='chapter_links'>
+<div class='chapter_links header'>
 
 <ul>
 <li><span class='previous_chapter_link'><a href="version-control">Version Control</a></span></li>
@@ -21,33 +21,63 @@
 <li>4 <a href="#searching">Searching</a>
 
 <ul>
-<li>4.1 <a href="#search-options">Search Options</a></li>
+<li>4.1 <a href="#folder-search">Folder Search</a></li>
+<li>4.2 <a href="#search-results">Search Results</a></li>
+<li>4.3 <a href="#replacing">Replacing</a></li>
+<li>4.4 <a href="#search-clipboard">Search Clipboard</a></li>
+<li>4.5 <a href="#search-options">Search Options</a></li>
 </ul></li>
 </ul>
 </div>
+<div class='content'>
 
 <h1 id="searching">4 Searching</h1>
 
 <ul>
+<li>Inserting special characters (tabs and newlines)</li>
+<li>Incremental search (<kbd class='keyEquivalent'>⌃S</kbd>)</li>
+</ul>
+
+<h2 id="folder-search">4.1 Folder Search</h2>
+
+<ul>
+<li>Searching parent folder (<kbd class='keyEquivalent'>⌘↑</kbd>), TODO Allow navigating recent folders with <kbd class='keyEquivalent'>⌘[</kbd> and <kbd class='keyEquivalent'>⌘]</kbd></li>
+<li>See Also: Glob String Syntax</li>
+<li>Aborting search</li>
+</ul>
+
+<h2 id="search-results">4.2 Search Results</h2>
+
+<ul>
 <li>Moving between results (<kbd class='keyEquivalent'>⌘1</kbd>-<kbd class='keyEquivalent'>⌘n</kbd> + <kbd class='keyEquivalent'>⌘G</kbd> / <kbd class='keyEquivalent'>⇧⌘G</kbd>)</li>
 <li>Collapsing all results (<kbd class='keyEquivalent'>⌥⌘1</kbd>)</li>
-<li>Replacement previews (when focus is in “Replace” text field)</li>
 <li>Choosing what to replace (<kbd class='keyEquivalent'>⌥</kbd>-click check boxes)</li>
 <li>Copy matches to clipboard (actions in drop-down menu)</li>
-<li>Searching parent folder (<kbd class='keyEquivalent'>⌘↑</kbd>), TODO Allow navigating recent folders with <kbd class='keyEquivalent'>⌘[</kbd> and <kbd class='keyEquivalent'>⌘]</kbd></li>
-<li>Inserting special characters (tabs and newlines)</li>
-<li>Aborting search</li>
-<li>See Also: Glob String Syntax</li>
+</ul>
+
+<h2 id="replacing">4.3 Replacing</h2>
+
+<ul>
+<li>Replacement previews (when focus is in “Replace” text field)</li>
 <li>See Also: Format String Syntax, give example with ${1/…/…/} and also use named variables from original match</li>
 </ul>
 
-<h2 id="search-options">4.1 Search Options</h2>
+<h2 id="search-clipboard">4.4 Search Clipboard</h2>
+
+<p>Similar to how you can copy text to the clipboard with <em>Edit → Copy</em> (<kbd class='keyEquivalent'>⌘C</kbd>) and paste it later with <em>Edit → Paste</em> (<kbd class='keyEquivalent'>⌘V</kbd>) you can use <em>Edit → Find → Use Selection for Find</em> (<kbd class='keyEquivalent'>⌘E</kbd>) to place the current selection on the (globally shared) search clipboard and use <em>Edit → Find → Find Next</em> (<kbd class='keyEquivalent'>⌘G</kbd>) or <em>Edit → Find → Find Previous</em> (<kbd class='keyEquivalent'>⇧⌘G</kbd>) to find the next or previous occurrence of the search string.</p>
+
+<p>The content of the search clipboard is also used when opening the find dialog using <em>Edit → Find → Find…</em> (<kbd class='keyEquivalent'>⌘F</kbd>).</p>
+
+<p>TextMate maintains a history of your previous search strings and you can select <em>Edit → Find → Show History</em> (<kbd class='keyEquivalent'>⌃⌥⌘F</kbd>) to see previous search strings. If you close the list with return (<kbd class='keyEquivalent'>↩</kbd>) then TextMate will search for the next occurrence of the selected string, whereas closing the list with escape (<kbd class='keyEquivalent'>⎋</kbd>) will change the current string on the search clipboard but not perform a search.</p>
+
+<h2 id="search-options">4.5 Search Options</h2>
 
 <ul>
 <li>Regular Expression</li>
 <li>Ignore Whitespace</li>
 </ul>
-<div class='chapter_links'>
+</div>
+<div class='chapter_links footer'>
 
 <ul>
 <li><span class='previous_chapter_link'><a href="version-control">Version Control</a></span></li>
