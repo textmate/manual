@@ -1,0 +1,269 @@
+body{
+  -webkit-user-select: none;
+  background: white;
+  color: black;
+  font-family: "Lucida Grande", "Lucida Sans", Helvetica, sans-serif;
+  font-size: 12px;
+  line-height: normal;
+  margin: 0;
+  padding: 0;
+}
+
+.toc ul, .toc_links ul, .chapter_links ul {
+	list-style-type: none;
+}
+
+.chapter_links ul {
+   background: #eeeeee;
+   margin: 0;
+   padding: 10px 20px;
+}
+/*.chapter_links li {
+	display: inline;
+}
+*/.chapter_links ul li:nth-child(1) {
+	float: left;
+}
+.chapter_links ul li:nth-child(2) {
+	display: inline;
+	margin: 0 100px;
+}
+.chapter_links ul li:nth-child(3) {
+	float: right;
+}
+.chapter_links li .previous_chapter_link:before {
+	content: '◀';
+}
+.chapter_links li .next_chapter_link:after {
+	content: '▶';
+}
+
+.toc_links {
+   border-radius: 3px;
+   background: #eeeeee;
+   border: 1px solid rgba(150, 150, 150, 0.07);
+   font-size: 90%;
+   line-height: normal;
+   margin: 20px;
+}
+
+.content {
+   margin: 20px;
+}
+
+kbd {
+	background-color:#dddddd;
+	background-image:-moz-linear-gradient(#f1f1f1, #ddd);
+	background-image:-webkit-linear-gradient(#f1f1f1, #ddd);
+	background-image:linear-gradient(#f1f1f1, #ddd);
+	background-repeat:repeat-x;
+	border-radius:2px;
+	border:1px solid #ddd;
+	border-bottom-color:#ccc;
+	border-right-color:#ccc;
+	padding:1px 4px;
+	line-height:10px;
+	font-family:"Lucida Grande";
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: black;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+}
+h1 {
+  font-size: 2em;
+}
+h2 {
+  font-size: 1.5em;
+}
+h3 {
+  font-size: 1.17em;
+}
+h4 {
+  font-size: 1em;
+}
+h5 {
+  font-size: 0.83em;
+}
+h6 {
+  font-size: 0.67em;
+}
+a {
+  color: #1525ab;
+  text-decoration: none;
+}
+a:visited {
+  color: #680094;
+}
+a:hover, a:active, a:focus {
+  text-decoration: underline;
+}
+a:not([href]):hover, a:not([href]):active, a:not([href]):focus {
+  text-decoration: none;
+}
+a[rel="external"] {
+  position: relative;
+}
+a[rel="external"]::after {
+  background-image: url('images/external-link.png?1346624729'), -webkit-gradient(radial, 50%, 0, 50%, 90, color-stop(65%, rgba(255, 255, 255, 0.8)), color-stop(90%, rgba(255, 255, 255, 0)));
+  background-image: url('images/external-link.png?1346624729'), -webkit-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 0.8) 65%, rgba(255, 255, 255, 0) 90%);
+  background-image: url('images/external-link.png?1346624729'), radial-gradient(center, ellipse cover, rgba(255, 255, 255, 0.8) 65%, rgba(255, 255, 255, 0) 90%);
+  background-position: center;
+  background-repeat: no-repeat;
+  content: '';
+  display: none;
+  height: 9px;
+  margin: 0;
+  padding: 1px;
+  position: absolute;
+  right: -12px;
+  top: 15%;
+  width: 10px;
+  z-index: 1;
+}
+a[rel="external"]:hover::after {
+  display: block;
+}
+b, strong {
+  font-weight: 700;
+}
+i, em {
+  font-style: italic;
+}
+blockquote {
+  color: #444444;
+  font-style: italic;
+  margin-left: 40px;
+  margin-right: 0;
+}
+h1, h2, h3, h4, h5, h6, p, pre, blockquote {
+  -webkit-margin-collapse: collapse;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+dl, dt, dd {
+  margin-left: 0;
+  margin-right: 0;
+}
+dt {
+  font-weight: bold;
+}
+dd {
+  margin-left: 30px;
+}
+pre, tt, code, samp, textarea {
+  font-family: Menlo, Monaco, "Courier New", monospace;
+  font-size: inherit;
+}
+code, pre {
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  background: #eeeeee;
+  border: 1px solid rgba(150, 150, 150, 0.07);
+  font-size: 90%;
+  line-height: normal;
+}
+code {
+  display: inline-block;
+  padding: 1px 4px;
+}
+pre {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 1em 0;
+  overflow: auto;
+  padding: .6em .8em;
+  position: relative;
+  white-space: pre-wrap;
+  word-wrap: normal;
+}
+pre code {
+  background: transparent;
+  border: none;
+  display: inline;
+  font-size: 100%;
+  padding: 0;
+  white-space: pre;
+  word-wrap: normal;
+}
+hr {
+  background-color: #e0e0e0;
+  border: none;
+  height: 1px;
+  margin: 1em 0;
+  padding: 0;
+}
+li > p {
+  margin: 0;
+}
+table {
+  border-collapse: collapse;
+  empty-cells: show;
+}
+table:not([class]):not([style*=":"]),
+.pro_table {
+  -webkit-box-shadow: 0 1px 0 0 rgba(150, 150, 150, 0.1);
+  box-shadow: 0 1px 0 0 rgba(150, 150, 150, 0.1);
+  border-bottom: 1px solid #d0d0d0;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: inherit;
+  margin: 0;
+  padding: 0;
+}
+table:not([class]):not([style*=":"]) th, table:not([class]):not([style*=":"]) td,
+.pro_table th,
+.pro_table td {
+  margin: 0;
+  padding: 4px 8px;
+  text-align: left;
+}
+table:not([class]):not([style*=":"]) th,
+.pro_table th {
+  font-weight: 700;
+}
+table:not([class]):not([style*=":"]) > tbody > tr > th,
+table:not([class]):not([style*=":"]) td,
+.pro_table > tbody > tr > th,
+.pro_table td {
+  vertical-align: top;
+}
+table:not([class]):not([style*=":"]) > thead > tr > th, table:not([class]):not([style*=":"]) > tbody:first-child > tr:first-child > th,
+.pro_table > thead > tr > th,
+.pro_table > tbody:first-child > tr:first-child > th {
+  -webkit-box-shadow: 0 -3px 4px -3px rgba(0, 0, 0, 0.2) inset, 0 -35px 35px -35px rgba(50, 50, 50, 0.1) inset;
+  box-shadow: 0 -3px 4px -3px rgba(0, 0, 0, 0.2) inset, 0 -35px 35px -35px rgba(50, 50, 50, 0.1) inset;
+  border-bottom: 1px solid #c6c6c6;
+}
+table:not([class]):not([style*=":"]) > tbody:first-child > tr:first-child > td,
+.pro_table > tbody:first-child > tr:first-child > td {
+  -webkit-box-shadow: 0 -1px 0 0 rgba(150, 150, 150, 0.1);
+  box-shadow: 0 -1px 0 0 rgba(150, 150, 150, 0.1);
+  border-top: 1px solid #d6d6d6;
+}
+table:not([class]):not([style*=":"]) > tbody:first-child > tr > td:first-child,
+.pro_table > tbody:first-child > tr > td:first-child {
+  border-left: 1px solid #e2e2e2;
+}
+table:not([class]):not([style*=":"]) > tbody:first-child > tr > td:last-child,
+.pro_table > tbody:first-child > tr > td:last-child {
+  border-right: 1px solid #e2e2e2;
+}
+table:not([class]):not([style*=":"]) > tbody > tr:nth-child(even) > td,
+.pro_table > tbody > tr:nth-child(even) > td {
+  background-color: #f3f6fa;
+  background-color: rgba(206, 219, 234, 0.25);
+}
+div.footnotes {
+  font-size: 90%;
+  padding: 1em;
+}
+div.footnotes li > p {
+  display: inline;
+}
+.alternate {
+  background-color: #f3f6fa;
+  background-color: rgba(206, 219, 234, 0.25);
+}
