@@ -7,7 +7,8 @@
 </head>
 <body>
 
-<div class='chapter_links header'>
+<header>
+<div class="chapter_links">
 
 <ul>
 <li><span class='previous_chapter_link'><a href="concepts">Concepts</a></span></li>
@@ -25,11 +26,12 @@
 <li>19.3 <a href="#glob-string">Glob String</a></li>
 <li>19.4 <a href="#selection-string">Selection String</a></li>
 <li>19.5 <a href="#modified-property-list">Modified Property List</a></li>
-<li>19.6 <a href="#regular-expression-syntax">Regular Expression Syntax</a></li>
+<li>19.6 <a href="#regular-expression">Regular Expression</a></li>
 </ul></li>
 </ul>
 </div>
-<div class='content'>
+</header>
+<section>
 
 <h1 id="references">19 References</h1>
 
@@ -76,6 +78,8 @@ ${«var»:[/upcase][/downcase][/capitalize][/asciify]}
 <li>Used for: grammar names, <code>.tm_properties</code> values, Preferences → Variables, replacement strings</li>
 </ul>
 
+<p>For nested replacements, use named captures as variables are inherited.</p>
+
 <h2 id="glob-string">19.3 Glob String</h2>
 
 <pre><code>\«char»         -- Literal «char»
@@ -102,6 +106,8 @@ target
 Makefile
 .tm_properties
 </code></pre>
+
+<p>Ability to negate match by prefixing with <code>!</code>.</p>
 
 <p>¹ The asterisk will not match slashes nor a leading period.</p>
 
@@ -132,15 +138,17 @@ offset       = [1-9][0-9]*
 
 <p>See TextMate 1.x manual.</p>
 
-<h2 id="regular-expression-syntax">19.6 Regular Expression Syntax</h2>
-</div>
-<div class='chapter_links footer'>
+<h2 id="regular-expression">19.6 Regular Expression</h2>
+</section>
+<footer>
+<div class="chapter_links">
 
 <ul>
 <li><span class='previous_chapter_link'><a href="concepts">Concepts</a></span></li>
 <li><span class='toc_link'><a href="./">Table of Contents</a></span></li>
 </ul>
 </div>
+</footer>
 
 </body>
 </html>

@@ -7,7 +7,8 @@
 </head>
 <body>
 
-<div class='chapter_links header'>
+<header>
+<div class="chapter_links">
 
 <ul>
 <li><span class='previous_chapter_link'><a href="opening-files">Opening Files</a></span></li>
@@ -26,22 +27,27 @@
 <li>2.3 <a href="#tabs">Tabs</a>
 
 <ul>
-<li>2.3.1 <a href="#creating-tabs">Creating Tabs</a></li>
+<li>2.3.1 <a href="#creating-tabs">Creating Tabs</a>
+
+<ul>
+<li>2.3.1.1 <a href="#default-file-type-for-new-tabs">Default File Type for New Tabs</a></li>
+</ul></li>
 <li>2.3.2 <a href="#closing-tabs">Closing Tabs</a></li>
 </ul></li>
 <li>2.4 <a href="#file-browser">File Browser</a>
 
 <ul>
-<li>2.4.1 <a href="#creating-new-items">Creating New Items</a></li>
-<li>2.4.2 <a href="#location-and-selections">Location and Selections</a></li>
-<li>2.4.3 <a href="#drag-and-drop">Drag and Drop</a></li>
-<li>2.4.4 <a href="#keyboard-usage">Keyboard Usage</a></li>
+<li>2.4.1 <a href="#location-and-selections">Location and Selections</a></li>
+<li>2.4.2 <a href="#drag-and-drop">Drag and Drop</a></li>
+<li>2.4.3 <a href="#keyboard-usage">Keyboard Usage</a></li>
+<li>2.4.4 <a href="#effective-folder">Effective Folder</a></li>
 <li>2.4.5 <a href="#custom-commands">Custom Commands</a></li>
 </ul></li>
 </ul></li>
 </ul>
 </div>
-<div class='content'>
+</header>
+<section>
 
 <h1 id="projects">2 Projects</h1>
 
@@ -94,6 +100,16 @@ windowTitle        = '$TM_DISPLAYNAME$windowTitleProject$windowTitleSCM'
 
 <p>Tabs can also be dragged between windows but if dropped outside the tab bar of an existing TextMate window, the drag will act as if the file itself was dropped, rather than create a new window for the document. This is useful when you need the path of a document inserted into your terminal, as you can then drag and drop the desired tab to the terminal window.</p>
 
+<h4 id="default-file-type-for-new-tabs">2.3.1.1 Default File Type for New Tabs</h4>
+
+<p>When selecting <em>File → New Tab</em> (<kbd class='keyEquivalent'>⌥⌘N</kbd>), the file type is read via <a href="settings#file-settings">file settings</a> using the <code>fileType</code> key scoped to <code>attr.untitled</code>. If for example we wish new files in our <code>/path/to/project</code> should default to markdown, then create <code>/path/to/project/.tm_properties</code> containing:</p>
+
+<pre><code>[ attr.untitled ]
+fileType = &quot;text.html.markdown&quot;
+</code></pre>
+
+<p>This setting is also used by <em>File → New File</em> (<kbd class='keyEquivalent'>⇧⌘N</kbd>).</p>
+
 <h3 id="closing-tabs">2.3.2 Closing Tabs</h3>
 
 <p>A common problem is being left with too many open tabs. In an attempt to counter that, TextMate will automatically close tabs that hasn’t been used in a while, when the tab bar overflows.</p>
@@ -114,19 +130,7 @@ windowTitle        = '$TM_DISPLAYNAME$windowTitleProject$windowTitleSCM'
 
 <p>Descending into file packages or application bundles can be done either by selecting <em>Show Package Contents</em> from the context menu, or by holding option (<kbd class='keyEquivalent'>⌥</kbd>) while double-clicking the item or single-clicking the item’s icon.</p>
 
-<h3 id="creating-new-items">2.4.1 Creating New Items</h3>
-
-<p>New files and folders can be created using <em>File → New File</em> (<kbd class='keyEquivalent'>⇧⌘N</kbd>) and <em>File → New Folder</em> (<kbd class='keyEquivalent'>⌃⌘N</kbd>). The location of the new item is determined by the current selection in the file browser. If something is selected, then the new item will be created at the same level as the selected item(s), one exception is that selecting an expanded folder item will create the new item as a descendent of the selected folder.</p>
-
-<p>When creating a new file, the file type is read via <a href="settings#file-settings">file settings</a> using the <code>fileType</code> key scoped to <code>attr.untitled</code>. If for example we wish new files in our <code>/path/to/project/manual</code> should default to markdown, then create <code>/path/to/project/manual/.tm_properties</code> containing:</p>
-
-<pre><code>[ attr.untitled ]
-fileType = &quot;text.html.markdown&quot;
-</code></pre>
-
-<p>This setting is also used by <em>File → New Tab</em> (<kbd class='keyEquivalent'>⌥⌘N</kbd>).</p>
-
-<h3 id="location-and-selections">2.4.2 Location and Selections</h3>
+<h3 id="location-and-selections">2.4.1 Location and Selections</h3>
 
 <p>Many <a href="commands#commands">commands</a> use the file browser selection as the set of files to work on, for example if you wish to see uncommitted changes for a subset of files, select those files before invoking the version control command. If there are no selection, the commands will generally work on the entire project.</p>
 
@@ -134,11 +138,11 @@ fileType = &quot;text.html.markdown&quot;
 
 <p>In the <em>Go</em> menu you can find a few other useful actions for changing location of the file browser. Be aware that the key equivalent of <em>Go → Back</em> (<kbd class='keyEquivalent'>⌘[</kbd>), <em>Go → Forward</em> (<kbd class='keyEquivalent'>⌘]</kbd>), <em>Go → Enclosing Folder</em> (<kbd class='keyEquivalent'>⌘↑</kbd>), and <em>Go → Other Folder…</em> (<kbd class='keyEquivalent'>⇧⌘G</kbd>) is only available when focus is in the file browser, and due to technical limitations, will not show in the menu.</p>
 
-<h3 id="drag-and-drop">2.4.3 Drag and Drop</h3>
+<h3 id="drag-and-drop">2.4.2 Drag and Drop</h3>
 
 <p>Drag and drop can be used to move files from one location to another but by holding down command (<kbd class='keyEquivalent'>⌘</kbd>) the drop will result in a duplicate, and control (<kbd class='keyEquivalent'>⌃</kbd>) will cause a symbolic link to be created at the drop location.</p>
 
-<h3 id="keyboard-usage">2.4.4 Keyboard Usage</h3>
+<h3 id="keyboard-usage">2.4.3 Keyboard Usage</h3>
 
 <p>Moving keyboard focus to the file browser can be done by selecting <em>Navigate → Move Focus to File Browser</em> (<kbd class='keyEquivalent'>⌥⌘⇥</kbd>). Use the same action to move focus back to the document.</p>
 
@@ -220,7 +224,14 @@ fileType = &quot;text.html.markdown&quot;
 </tr>
 </tbody>
 </table>
+
 <p>When you cut one or more items, they will not be removed before you paste them somewhere else, as the action is meant for moving items. Use delete instead of cut, if you want the item to be removed.</p>
+
+<h3 id="effective-folder">2.4.4 Effective Folder</h3>
+
+<p>Actions like <em>File → New File</em> (<kbd class='keyEquivalent'>⇧⌘N</kbd>) require a folder which is obtained from the file browser in this way:</p>
+
+<p>If something is selected, the folder containing the selected item(s) will be used as the effective folder, unless a single expanded folder is selected, in this case, the selected folder is used. If nothing is selected, the top folder showing in the file browser is used.</p>
 
 <h3 id="custom-commands">2.4.5 Custom Commands</h3>
 
@@ -231,8 +242,9 @@ fileType = &quot;text.html.markdown&quot;
 <p>An example of a command that appear in the file browser’s action menu is <em>Bundles → Shell Script → Open Terminal</em> (<kbd class='keyEquivalent'>⌃⇧O</kbd>). The <em>Compress Selected Items</em> and <em>Show Images</em> are also bundle commands.</p>
 <!-- TODO Improve how commands are setup to be used in the file browser -->
 <!-- TODO Document what file browser commands can expect in terms of variables and input/output -->
-</div>
-<div class='chapter_links footer'>
+</section>
+<footer>
+<div class="chapter_links">
 
 <ul>
 <li><span class='previous_chapter_link'><a href="opening-files">Opening Files</a></span></li>
@@ -240,6 +252,7 @@ fileType = &quot;text.html.markdown&quot;
 <li><span class='next_chapter_link'><a href="searching">Searching</a></span></li>
 </ul>
 </div>
+</footer>
 
 </body>
 </html>

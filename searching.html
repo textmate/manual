@@ -7,7 +7,8 @@
 </head>
 <body>
 
-<div class='chapter_links header'>
+<header>
+<div class="chapter_links">
 
 <ul>
 <li><span class='previous_chapter_link'><a href="version-control">Version Control</a></span></li>
@@ -26,41 +27,70 @@
 <li>4.3 <a href="#replacing">Replacing</a></li>
 <li>4.4 <a href="#search-clipboard">Search Clipboard</a></li>
 <li>4.5 <a href="#search-options">Search Options</a></li>
+<li>4.6 <a href="#incremental-search">Incremental Search</a></li>
 </ul></li>
 </ul>
 </div>
-<div class='content'>
+</header>
+<section>
 
 <h1 id="searching">4 Searching</h1>
 
+<p>The primary search actions which you should learn the key equivalents for are:</p>
+
 <ul>
-<li>Inserting special characters (tabs and newlines)</li>
-<li>Incremental search (<kbd class='keyEquivalent'>⌃S</kbd>)</li>
+<li><em>Edit → Find → Find Next</em> (<kbd class='keyEquivalent'>⌘G</kbd>)</li>
+<li><em>Edit → Find → Find Previous</em> (<kbd class='keyEquivalent'>⇧⌘G</kbd>)</li>
+<li><em>Edit → Find → Show History</em> (<kbd class='keyEquivalent'>⌃⌥⌘F</kbd>)</li>
+<li><em>Edit → Find → Use Selection for Find</em> (<kbd class='keyEquivalent'>⌘E</kbd>)</li>
 </ul>
+
+<p>Another action is <em>Bundles → Text → Selecting → Extend Selection to Include Next</em> (<kbd class='keyEquivalent'>⌃W</kbd>), more detail about this action can be found in the <a href="searching#search-clipboard">search clipboard</a> section below.</p>
+
+<p>TextMate’s search dialog can be brought up by selecting <em>Edit → Find → Find…</em> (<kbd class='keyEquivalent'>⌘F</kbd>). Once this dialog is showing the <em>Edit → Find → Find All</em> (<kbd class='keyEquivalent'>⌥⌘F</kbd>) menu item will trigger the <code>Find All</code> button in the search dialog and show you all results from the current document. When the search dialog is not showing, the same action will instead select all matches in the current document.</p>
+
+<p>If you wish to search for tab or newline characters then you can press option-tab or option-newline to insert these in the search or replace fields. The fields will automatically grow with their content.</p>
+
+<p>The sigma button (<code>Σ</code>) in the search dialog can be used to count the number of results in the current document. Though the same information can be obtained via <code>Find All</code> so this action is likely to be removed in a future version of TextMate.</p>
 
 <h2 id="folder-search">4.1 Folder Search</h2>
 
-<ul>
-<li>Searching parent folder (<kbd class='keyEquivalent'>⌘↑</kbd>), TODO Allow navigating recent folders with <kbd class='keyEquivalent'>⌘[</kbd> and <kbd class='keyEquivalent'>⌘]</kbd></li>
-<li>See Also: Glob String Syntax</li>
-<li>Aborting search</li>
-</ul>
+<p>You can select <em>Edit ⇢ Find → Find in Project…</em> (<kbd class='keyEquivalent'>⇧⌘F</kbd>) to bring up the search dialog with the <code>In</code> pop-up defaulting to the current project folder. You can also click the magnifying glass in the file browser to open a search dialog pointing to the file browser’s <a href="projects#effective-folder">effective folder</a>, or switch focus to the file browser before pressing <kbd class='keyEquivalent'>⇧⌘F</kbd>.</p>
+
+<p>Should you wish to extend the search to a parent folder then you can use <em>Go → Enclosing Folder</em> (<kbd class='keyEquivalent'>⌘↑</kbd>) or interact with the <code>In</code> pop-up menu.</p>
+
+<p>When the <code>In</code> pop-up is showing a folder you can select <code>Find All</code> to perform a search across the files in the selected folder.</p>
+
+<p>If you wish to limit the search then you can edit the <code>matching</code> <a href="references#glob-string">glob string</a>. For example to only search HTML files you can make it <code>*.html</code> or if you wish to exclude all files in the <code>vendor</code> folder, make it <code>!vendor/**</code>.</p>
+
+<p>See <a href="settings#filtering-files">filtering files</a> for more options.</p>
+
+<p>If you wish the search to follow symbolic links then you should enable this via the gear pop-up menu to the right of the <code>matching</code> text field.</p>
+
+<p>You can abort a running search by clicking the stop button that appear to the left of the status text, closing the window, or pressing <kbd class='keyEquivalent'>⌘.</kbd>.</p>
+<!-- TODO Allow navigating recent folders with <kbd class='keyEquivalent'>⌘\[</kbd> and <kbd class='keyEquivalent'>⌘]</kbd> -->
 
 <h2 id="search-results">4.2 Search Results</h2>
 
-<ul>
-<li>Moving between results (<kbd class='keyEquivalent'>⌘1</kbd>-<kbd class='keyEquivalent'>⌘n</kbd> + <kbd class='keyEquivalent'>⌘G</kbd> / <kbd class='keyEquivalent'>⇧⌘G</kbd>)</li>
-<li>Collapsing all results (<kbd class='keyEquivalent'>⌥⌘1</kbd>)</li>
-<li>Choosing what to replace (<kbd class='keyEquivalent'>⌥</kbd>-click check boxes)</li>
-<li>Copy matches to clipboard (actions in drop-down menu)</li>
-</ul>
+<p>After a folder search you will see the results grouped by file. There are a few useful actions related to these results which we’ll go over in this section.</p>
+
+<p>Using command <kbd class='keyEquivalent'>⌘1</kbd>-<kbd class='keyEquivalent'>⌘n</kbd> will select the first result in the n’th file. It will also move focus to the results list, allowing you to use arrow up and down to move through the results.</p>
+
+<p>Using <em>Edit → Find → Find Next</em> (<kbd class='keyEquivalent'>⌘G</kbd>) will select the first result, and subsequent uses will advance through the results. Likewise <em>Edit → Find → Find Previous</em> (<kbd class='keyEquivalent'>⇧⌘G</kbd>) will initially select the last result and move backwards through the results.</p>
+
+<p>If you close the search dialog and use <em>Edit → Find → Find Next</em> (<kbd class='keyEquivalent'>⌘G</kbd>) in a document with no more results, TextMate will open the next file which have results and select the first result in this file.</p>
+
+<p>From the gear menu in the find dialog you can select <em>Collapse Results</em> (<kbd class='keyEquivalent'>⌥⌘1</kbd>). This is useful when you are only interested in which files contain matches and not the matches themselves.</p>
+
+<p>Also in the gear menu are actions for copying the results to the clipboard. You can copy just the matching parts or the entire line with the match, either with or without file name. The first option, copying matching parts, is useful for <a href="references#regular-expression">regular expression</a> searches, for example a project search for <code>href=&quot;.*?&quot;</code> followed by <em>Copy Matching Parts</em> will provide you with a list of all links across all files. You can paste that into a new document and use <em>Bundles → Text → Sorting → Sort Documents &amp; Remove Duplicates</em> (F5) to remove duplicates.</p>
 
 <h2 id="replacing">4.3 Replacing</h2>
 
-<ul>
-<li>Replacement previews (when focus is in “Replace” text field)</li>
-<li>See Also: Format String Syntax, give example with ${1/…/…/} and also use named variables from original match</li>
-</ul>
+<p>When you search for regular expressions the replacement string is interpreted as a <a href="references#format-string">format string</a> where you can use captures from the search. Here is a <a href="http://blog.macromates.com/2012/nested-replacements/">blog post about using captures and nested replacements in TextMate</a>.</p>
+
+<p>As mentioned in the blog post, TextMate offers you replacement previews. These are automatically shown when focus is in the <code>Replace</code> text field.</p>
+
+<p>For results that you do not wish to have replaced, uncheck the check box next to the result. By holding down option (<kbd class='keyEquivalent'>⌥</kbd>) when clicking a check box, all results for the corresponding file will be excluded or included.</p>
 
 <h2 id="search-clipboard">4.4 Search Clipboard</h2>
 
@@ -70,14 +100,101 @@
 
 <p>TextMate maintains a history of your previous search strings and you can select <em>Edit → Find → Show History</em> (<kbd class='keyEquivalent'>⌃⌥⌘F</kbd>) to see previous search strings. If you close the list with return (<kbd class='keyEquivalent'>↩</kbd>) then TextMate will search for the next occurrence of the selected string, whereas closing the list with escape (<kbd class='keyEquivalent'>⎋</kbd>) will change the current string on the search clipboard but not perform a search.</p>
 
+<p>In addition to placing selection on the search clipboard, you can also use <em>Edit → Find → Use Selection for Replace</em> (<kbd class='keyEquivalent'>⇧⌘E</kbd>). This is useful if you want to perform a replacement and bypass the search dialog. The steps would be:</p>
+
+<ol>
+<li>Select the string you wish to replace and press <kbd class='keyEquivalent'>⌘E</kbd>.</li>
+<li>Overtype the selection with the replacement, select it, and press <kbd class='keyEquivalent'>⇧⌘E</kbd>.</li>
+</ol>
+
+<p>After this you can use <em>Edit → Find → Replace All</em> (<kbd class='keyEquivalent'>⌃⌘G</kbd>), make a selection and use <em>Edit → Find → Replace All in Selection</em> (<kbd class='keyEquivalent'>⌃⇧⌘G</kbd>), or possibly <em>Edit → Find → Replace and Find</em> (<kbd class='keyEquivalent'>⌥⌘G</kbd>)</p>
+
+<p>If you wish to replace only a few instances near the caret, it might be easier to select the first match and then use <em>Bundles → Text → Selecting → Extend Selection to Include Next</em> (<kbd class='keyEquivalent'>⌃W</kbd>). This action will make the next occurrence of the currently selected string part of the selection, causing multiple occurrences to be selected. Use it to select all the occurrences you wish to replace, and then perform your replacement, as the changes you do to the first occurrence will be mirrored to all the other occurrences.</p>
+
+<p>With no selection the action is <em>Edit → Select → Word</em> (<kbd class='keyEquivalent'>⌃W</kbd>) which means that for single word replacements you only need to place the caret on the word to be replaced and then press <kbd class='keyEquivalent'>⌃W</kbd> until all the occurrences are selected.</p>
+
 <h2 id="search-options">4.5 Search Options</h2>
 
-<ul>
-<li>Regular Expression</li>
-<li>Ignore Whitespace</li>
-</ul>
-</div>
-<div class='chapter_links footer'>
+<p>Four options affect how the search works, these can be toggled either via the <em>Edit</em> menu or in the find dialog.</p>
+
+<p>The options are as follows:</p>
+
+<table>
+<colgroup>
+<col style="text-align:left;"/>
+<col style="text-align:left;"/>
+<col style="text-align:left;"/>
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;">Name</th>
+	<th style="text-align:left;">Key Equivalent</th>
+	<th style="text-align:left;">Explanation</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;">Ignore Case</td>
+	<td style="text-align:left;"><kbd class='keyEquivalent'>⌥⌘C</kbd></td>
+	<td style="text-align:left;">Perform a case insensitive search.</td>
+</tr>
+<tr>
+	<td style="text-align:left;">Regular Expression</td>
+	<td style="text-align:left;"><kbd class='keyEquivalent'>⌥⌘R</kbd></td>
+	<td style="text-align:left;">Treat the search string as a <em>regular expression</em>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;">Ignore Whitespace</td>
+	<td style="text-align:left;"></td>
+	<td style="text-align:left;">Whitespace in the document and search string is ignored. This makes it easy to search for multi-line content regardless of its indentation.</td>
+</tr>
+<tr>
+	<td style="text-align:left;">Wrap Around</td>
+	<td style="text-align:left;"><kbd class='keyEquivalent'>⌥⌘A</kbd></td>
+	<td style="text-align:left;">Start over from the top of the document when no match is found.</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="incremental-search">4.6 Incremental Search</h2>
+
+<p>Selecting <em>Edit → Find → Incremental Search</em> (<kbd class='keyEquivalent'>⌃S</kbd>) will open a search field at the bottom of the window where a search string can be entered, and TextMate will show what it matches in the document. The search is case-insensitive and ignores whitespace.</p>
+
+<p>While the search field is showing you can use the following key equivalents:</p>
+
+<table>
+<colgroup>
+<col style="text-align:left;"/>
+<col style="text-align:left;"/>
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;">Key Equivalent</th>
+	<th style="text-align:left;">Action</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;"><kbd class='keyEquivalent'>⌃S</kbd> <kbd class='keyEquivalent'>⇥</kbd></td>
+	<td style="text-align:left;">Find next</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><kbd class='keyEquivalent'>⌃⇧S</kbd> <kbd class='keyEquivalent'>⇧⇥</kbd></td>
+	<td style="text-align:left;">Find previous</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><kbd class='keyEquivalent'>↩</kbd> <kbd class='keyEquivalent'>⎋</kbd></td>
+	<td style="text-align:left;">Close search field</td>
+</tr>
+</tbody>
+</table>
+</section>
+<footer>
+<div class="chapter_links">
 
 <ul>
 <li><span class='previous_chapter_link'><a href="version-control">Version Control</a></span></li>
@@ -85,6 +202,7 @@
 <li><span class='next_chapter_link'><a href="text-editing">Navigation</a></span></li>
 </ul>
 </div>
+</footer>
 
 </body>
 </html>
