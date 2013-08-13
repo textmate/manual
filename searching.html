@@ -11,9 +11,9 @@
 <div class="chapter_links">
 
 <ul>
-<li><span class='previous_chapter_link'><a href="version-control">Version Control</a></span></li>
+<li><span class='previous_chapter_link'><a href="version-control.html">Version Control</a></span></li>
 <li><span class='toc_link'><a href="./">Table of Contents</a></span></li>
-<li><span class='next_chapter_link'><a href="text-editing">Navigation</a></span></li>
+<li><span class='next_chapter_link'><a href="text-editing.html">Navigation</a></span></li>
 </ul>
 </div>
 <div class='toc_links'>
@@ -45,7 +45,7 @@
 <li><em>Edit → Find → Use Selection for Find</em> (<kbd class='keyEquivalent'>⌘E</kbd>)</li>
 </ul>
 
-<p>Another action is <em>Bundles → Text → Selecting → Extend Selection to Include Next</em> (<kbd class='keyEquivalent'>⌃W</kbd>), more detail about this action can be found in the <a href="searching#search-clipboard">search clipboard</a> section below.</p>
+<p>Another action is <em>Bundles → Text → Selecting → Extend Selection to Include Next</em> (<kbd class='keyEquivalent'>⌃W</kbd>), more detail about this action can be found in the <a href="searching.html#search-clipboard">search clipboard</a> section below.</p>
 
 <p>TextMate’s search dialog can be brought up by selecting <em>Edit → Find → Find…</em> (<kbd class='keyEquivalent'>⌘F</kbd>). Once this dialog is showing the <em>Edit → Find → Find All</em> (<kbd class='keyEquivalent'>⌥⌘F</kbd>) menu item will trigger the <code>Find All</code> button in the search dialog and show you all results from the current document. When the search dialog is not showing, the same action will instead select all matches in the current document.</p>
 
@@ -55,15 +55,15 @@
 
 <h2 id="folder-search">4.1 Folder Search</h2>
 
-<p>You can select <em>Edit ⇢ Find → Find in Project…</em> (<kbd class='keyEquivalent'>⇧⌘F</kbd>) to bring up the search dialog with the <code>In</code> pop-up defaulting to the current project folder. You can also click the magnifying glass in the file browser to open a search dialog pointing to the file browser’s <a href="projects#effective-folder">effective folder</a>, or switch focus to the file browser before pressing <kbd class='keyEquivalent'>⇧⌘F</kbd>.</p>
+<p>You can select <em>Edit ⇢ Find → Find in Project…</em> (<kbd class='keyEquivalent'>⇧⌘F</kbd>) to bring up the search dialog with the <code>In</code> pop-up defaulting to the current project folder. You can also click the magnifying glass in the file browser to open a search dialog pointing to the file browser’s <a href="projects.html#effective-folder">effective folder</a>, or switch focus to the file browser before pressing <kbd class='keyEquivalent'>⇧⌘F</kbd>.</p>
 
 <p>Should you wish to extend the search to a parent folder then you can use <em>Go → Enclosing Folder</em> (<kbd class='keyEquivalent'>⌘↑</kbd>) or interact with the <code>In</code> pop-up menu.</p>
 
 <p>When the <code>In</code> pop-up is showing a folder you can select <code>Find All</code> to perform a search across the files in the selected folder.</p>
 
-<p>If you wish to limit the search then you can edit the <code>matching</code> <a href="references#glob-string">glob string</a>. For example to only search HTML files you can make it <code>*.html</code> or if you wish to exclude all files in the <code>vendor</code> folder, make it <code>!vendor/**</code>.</p>
+<p>If you wish to limit the search then you can edit the <code>matching</code> <a href="references.html#glob-string">glob string</a>. For example to only search HTML files you can make it <code>*.html</code> or if you wish to exclude all files in the <code>vendor</code> folder, make it <code>!vendor/**</code>.</p>
 
-<p>See <a href="settings#filtering-files">filtering files</a> for more options.</p>
+<p>See <a href="settings.html#filtering-files">filtering files</a> for more options.</p>
 
 <p>If you wish the search to follow symbolic links then you should enable this via the gear pop-up menu to the right of the <code>matching</code> text field.</p>
 
@@ -82,11 +82,11 @@
 
 <p>From the gear menu in the find dialog you can select <em>Collapse Results</em> (<kbd class='keyEquivalent'>⌥⌘1</kbd>). This is useful when you are only interested in which files contain matches and not the matches themselves.</p>
 
-<p>Also in the gear menu are actions for copying the results to the clipboard. You can copy just the matching parts or the entire line with the match, either with or without file name. The first option, copying matching parts, is useful for <a href="references#regular-expression">regular expression</a> searches, for example a project search for <code>href=&quot;.*?&quot;</code> followed by <em>Copy Matching Parts</em> will provide you with a list of all links across all files. You can paste that into a new document and use <em>Bundles → Text → Sorting → Sort Documents &amp; Remove Duplicates</em> (F5) to remove duplicates.</p>
+<p>Also in the gear menu are actions for copying the results to the clipboard. You can copy just the matching parts or the entire line with the match, either with or without file name. The first option, copying matching parts, is useful for <a href="references.html#regular-expression">regular expression</a> searches, for example a project search for <code>href=&quot;.*?&quot;</code> followed by <em>Copy Matching Parts</em> will provide you with a list of all links across all files. You can paste that into a new document and use <em>Bundles → Text → Sorting → Sort Documents &amp; Remove Duplicates</em> (F5) to remove duplicates.</p>
 
 <h2 id="replacing">4.3 Replacing</h2>
 
-<p>When you search for regular expressions the replacement string is interpreted as a <a href="references#format-string">format string</a> where you can use captures from the search. Here is a <a href="http://blog.macromates.com/2012/nested-replacements/">blog post about using captures and nested replacements in TextMate</a>.</p>
+<p>When you search for regular expressions the replacement string is interpreted as a <a href="references.html#format-string">format string</a> where you can use captures from the search. Here is a <a href="http://blog.macromates.com/2012/nested-replacements/">blog post about using captures and nested replacements in TextMate</a>.</p>
 
 <p>As mentioned in the blog post, TextMate offers you replacement previews. These are automatically shown when focus is in the <code>Replace</code> text field.</p>
 
@@ -197,9 +197,9 @@
 <div class="chapter_links">
 
 <ul>
-<li><span class='previous_chapter_link'><a href="version-control">Version Control</a></span></li>
+<li><span class='previous_chapter_link'><a href="version-control.html">Version Control</a></span></li>
 <li><span class='toc_link'><a href="./">Table of Contents</a></span></li>
-<li><span class='next_chapter_link'><a href="text-editing">Navigation</a></span></li>
+<li><span class='next_chapter_link'><a href="text-editing.html">Navigation</a></span></li>
 </ul>
 </div>
 </footer>

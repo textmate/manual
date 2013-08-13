@@ -11,15 +11,27 @@
 <div class="chapter_links">
 
 <ul>
-<li><span class='previous_chapter_link'><a href="text-editing">Text Editing</a></span></li>
+<li><span class='previous_chapter_link'><a href="text-editing.html">Text Editing</a></span></li>
 <li><span class='toc_link'><a href="./">Table of Contents</a></span></li>
-<li><span class='next_chapter_link'><a href="commands">Search Path</a></span></li>
+<li><span class='next_chapter_link'><a href="commands.html">Search Path</a></span></li>
 </ul>
 </div>
 <div class='toc_links'>
 
 <ul>
-<li>6 <a href="#snippets">Snippets</a></li>
+<li>6 <a href="#snippets">Snippets</a>
+
+<ul>
+<li>6.1 <a href="#grammar">Grammar</a></li>
+<li>6.2 <a href="#plain-text">Plain Text</a></li>
+<li>6.3 <a href="#variables">Variables</a></li>
+<li>6.4 <a href="#interpolated-shell-code">Interpolated Shell Code</a></li>
+<li>6.5 <a href="#tab-stops">Tab Stops</a></li>
+<li>6.6 <a href="#placeholders">Placeholders</a></li>
+<li>6.7 <a href="#mirrors">Mirrors</a></li>
+<li>6.8 <a href="#transformations">Transformations</a></li>
+<li>6.9 <a href="#multiple-choices">Multiple Choices</a></li>
+</ul></li>
 </ul>
 </div>
 </header>
@@ -27,24 +39,176 @@
 
 <h1 id="snippets">6 Snippets</h1>
 
+<p>A snippet is a piece of text that you would like to insert in your document. It can include code to run at insertion time, variables (like selected text), tab stops/placeholders for missing information (which you can tab through after insertion) and perform transformations on the data which you enter in the placeholders.</p>
+
+<p>Snippets are created in the <a href="bundles.html#bundle-editor">bundle editor</a> and are often assigned a <a href="bundles.html#tab-trigger">tab trigger</a> for easy insertion.</p>
+
+<h2 id="grammar">6.1 Grammar</h2>
+
+<p>Snippets support the following constructs:</p>
+
 <pre><code>$«int»
 ${«int»}
-${«int»:«snippet»}
+${«int»:«any»}
 ${«int»/«regexp»/«format»/«options»}
 ${«int»|«choice 1»,…,«choice n»|}
-
 `«code»`
+«format»
 </code></pre>
 
-<p>See also: <a href="references#format-string">format string</a>.</p>
+<p>In the above, <code>«format»</code> is a <a href="references.html#format-string">format string</a> and <code>«any»</code> refers to any of the above.</p>
+
+<p>The next sub-sections will give examples of each of the above.</p>
+
+<h2 id="plain-text">6.2 Plain Text</h2>
+
+<p>In the simplest case, you can use snippets to insert text that you do not want to type again and again, either because you type it a lot, or because the actual text to insert is hard to remember (like your bank account details or the HTML entities for the Apple modifier keys).</p>
+
+<p>If you use snippets to insert plain text there is only one thing you should be aware of: <code>$</code> and <code>`</code> are reserved characters. So if you want to insert one of these, prefix it with an escape (i.e. <code>\$</code>). An escape not followed by one of these two characters (or followed by another escape) will be inserted as a literal character.</p>
+
+<h2 id="variables">6.3 Variables</h2>
+
+<p>You can use any of TextMate’s defined <a href="snippets.html#variables">variables</a> by prefixing the name of the variable with <code>$</code>. All the normal dynamic variables are supported, the most useful probably being <code>TM_SELECTED_TEXT</code>. If for example we want to create a snippet which wraps the selection in a LaTeX <code>\textbf</code> command, we can make a snippet which is:</p>
+
+<pre><code>\textbf{$TM_SELECTED_TEXT}
+</code></pre>
+
+<p>If no text is selected the variable will not be set, so nothing will be inserted in its place. We can provide a default value by using <a href="references.html#format-string">format string</a> syntax: <code>${«variable»:«default value»}</code>. For example:</p>
+
+<pre><code>\textbf{${TM_SELECTED_TEXT:no text was selected}}
+</code></pre>
+
+<p>The default value can itself contain variables or shell code. If you want the default text to contain a <code>}</code>, you need to escape it. But all other characters are used verbatim.</p>
+
+<p>Variables also support <a href="references.html#regular-expression">regular expression</a> replacements using this syntax: <code>${«variable»/«regexp»/«format»/«options»}</code>. If the variable is not set the replacement will be performed on the empty string. For example, to prepend a bullet to each non-empty line in the selection (and insert that) we can do:</p>
+
+<pre><code>${TM_SELECTED_TEXT/^.+$/• $0/g}
+</code></pre>
+
+<h2 id="interpolated-shell-code">6.4 Interpolated Shell Code</h2>
+
+<p>You can use backticks to have shell code executed when the snippet is inserted. The result from running the code gets inserted into the snippet, though with the last newline in the result removed (if present). So for example to create a snippet that wraps the selection in an HTML link, where the URL of that link comes from the clipboard, we can do:</p>
+
+<pre><code>&lt;a href=&quot;`pbpaste`&quot;&gt;$TM_SELECTED_TEXT&lt;/a&gt;
+</code></pre>
+
+<p>Since this is normal shell code, we can write a small program. For example we can let it verify that the clipboard contains only a single line of text like this:</p>
+
+<pre><code>&lt;a href=&quot;`
+    if [[ $(pbpaste|wc -l) -eq 0 ]]
+        then pbpaste
+        else echo http://example.com/
+    fi
+`&quot;&gt;$TM_SELECTED_TEXT&lt;/a&gt;
+</code></pre>
+
+<p>Inside shell code, the only character you need to escape is the backtick.</p>
+
+<h2 id="tab-stops">6.5 Tab Stops</h2>
+
+<p>After insertion, the caret will be placed after the last character of the snippet. This is not always desirable and we can change that by using <code>$0</code> to mark where we want the caret to be. So if for example we make an HTML <code>div</code>-snippet and want the caret to end between the opening and closing tags, we could make it like this:</p>
+
+<pre><code>&lt;div&gt;
+    $0
+&lt;/div&gt;
+</code></pre>
+
+<p>Often though we want to fill in text in several places in the snippet. Multiple tab stops can be provided by inserting <code>$1</code>-<code>$n</code>. The caret will start at <code>$1</code>, then when pressing tab it will move to <code>$2</code> and <code>$3</code> on next tab etc. until there are no more tab stops. If you do not explicitly set <code>$0</code>, the caret will be at the end of the snippet.</p>
+
+<p>So we could for example change the above to:</p>
+
+<pre><code>&lt;div$1&gt;
+    $0
+&lt;/div&gt;
+</code></pre>
+
+<p>This allows us to fill in an argument and then tab on to <code>$0</code>.</p>
+
+<h2 id="placeholders">6.6 Placeholders</h2>
+
+<p>Like variables, tab stops can also have default values (and are generally referred to as placeholders when they do). The syntax is the same: <code>${«tab stop»:«default value»}</code>. And the default value can contain both text, shell code and other placeholders. So we can refine the previous example further:</p>
+
+<pre><code>&lt;div${1: id=&quot;${2:some_id}&quot;}&gt;
+    $0
+&lt;/div&gt;
+</code></pre>
+
+<p>Inserting this snippet will insert a <code>div</code> tag with the <code>id</code> argument selected and we can then decide either to overtype the argument (i.e. delete it) and press tab again to reach <code>$0</code>, or we can press tab immediately to get to the second tab stop (the value part of the argument) and edit that.</p>
+
+<p>When you edit the placeholder text, any embedded tab stops will be removed.</p>
+
+<h2 id="mirrors">6.7 Mirrors</h2>
+
+<p>There are times when you need to provide the same value several places in the inserted text and in these situations you can re-use the tab stop to signal that you want it mirrored at that location. So for example to create a LaTeX environment with a snippet, we can use:</p>
+
+<pre><code>\begin{${1:enumerate}}
+    $0
+\end{$1}
+</code></pre>
+
+<p>After inserting this snippet, <code>enumerate</code> will be selected and if we edit it, the changes will be reflected in the <code>\end</code> part as well.</p>
+
+<h2 id="transformations">6.8 Transformations</h2>
+
+<p>There are situations where we want our placeholder text mirrored but with slight changes or where we want some text to appear depending on the value/presence of a placeholder.</p>
+
+<p>We can accomplish this by doing a regular expression substitution on the placeholder text (when mirroring it). The syntax for this is: <code>${«tab stop»/«regexp»/«format»/«options»}</code>.</p>
+
+<p>As an example, the Objective-C getter/setter methods (prior to the <code>@property</code> keyword) often look like this (in the [thread-unsafe form][]):</p>
+
+<pre><code>- (id)foo
+{
+    return foo;
+}
+
+- (void)setFoo:(id)aValue
+{
+    [foo autorelease];
+    foo = [aValue retain];
+}
+</code></pre>
+
+<p>In the <a href="references.html#format-string">format string</a> we can use <code>${«var»:/upcase}</code> to uppercase the matched character, so a snippet that only asks for the name of the instance variable once could look like this:</p>
+
+<pre><code>- (${1:id})${2:foo}
+{
+    return $2;
+}
+
+- (void)set${2/./${0:/upcase}/}:($1)aValue
+{
+    [$2 autorelease];
+    $2 = [aValue retain];
+}
+</code></pre>
+
+<p>We can also use conditional insertions in the format string (<code>${«var»:+«if-set»}</code>) to make decisions. For example if we create a snippet for a method we can let the return type decide whether or not the method should include a <code>return</code> statement like this:</p>
+
+<pre><code>- (${1:void})${2:methodName}
+{${1/void$|(.+)/${1:+\n\treturn nil;}/}
+}
+</code></pre>
+
+<p>Here we match placeholder 1 against <code>void</code> or anything (<code>.+</code>) and put the latter match in capture register 1. Then only if we did match something (other than <code>void</code>) will we insert a newline, tab and the <code>return nil;</code> text.</p>
+
+<h2 id="multiple-choices">6.9 Multiple Choices</h2>
+
+<p>Sometimes a placeholder can only take a limited number of values in which case we may want to show a menu with these choices.</p>
+
+<p>This can be done with the <code>${«int»|«choice 1»,…,«choice n»|}</code> syntax.</p>
+
+<p>For example:</p>
+
+<pre><code>color: ${1|red,green,blue|}
+</code></pre>
 </section>
 <footer>
 <div class="chapter_links">
 
 <ul>
-<li><span class='previous_chapter_link'><a href="text-editing">Text Editing</a></span></li>
+<li><span class='previous_chapter_link'><a href="text-editing.html">Text Editing</a></span></li>
 <li><span class='toc_link'><a href="./">Table of Contents</a></span></li>
-<li><span class='next_chapter_link'><a href="commands">Search Path</a></span></li>
+<li><span class='next_chapter_link'><a href="commands.html">Search Path</a></span></li>
 </ul>
 </div>
 </footer>
