@@ -59,7 +59,17 @@
 <li>5 <a href="text-editing.html#text-editing">Text Editing</a>
 
 <ul>
-<li>5.1 <a href="text-editing.html#navigation">Navigation</a></li>
+<li>5.1 <a href="text-editing.html#navigation">Navigation</a>
+
+<ul>
+<li>5.1.1 <a href="text-editing.html#word-movement">Word Movement</a></li>
+<li>5.1.2 <a href="text-editing.html#sub-word-movement">Sub-word Movement</a></li>
+<li>5.1.3 <a href="text-editing.html#column-movement">Column Movement</a></li>
+<li>5.1.4 <a href="text-editing.html#paired-character-movement">Paired Character Movement</a></li>
+<li>5.1.5 <a href="text-editing.html#bookmarks">Bookmarks</a></li>
+<li>5.1.6 <a href="text-editing.html#symbol-chooser">Symbol Chooser</a></li>
+<li>5.1.7 <a href="text-editing.html#freehanded-movement">Freehanded Movement</a></li>
+</ul></li>
 <li>5.2 <a href="text-editing.html#selection">Selection</a></li>
 <li>5.3 <a href="text-editing.html#multiple-carets">Multiple Carets</a></li>
 <li>5.4 <a href="text-editing.html#cut-copy-and-paste">Cut, Copy, and Paste</a></li>
@@ -181,6 +191,7 @@
 <li>19.5 <a href="references.html#modified-property-list">Modified Property List</a></li>
 <li>19.6 <a href="references.html#regular-expression">Regular Expression</a></li>
 </ul></li>
+<li>20 <a href="updating.html#updating">Updating</a></li>
 </ul>
 </div>
 <section>
@@ -284,6 +295,11 @@ windowTitle        = '$TM_DISPLAYNAME$windowTitleProject$windowTitleSCM'
 <p>For example, if we want to always show the parent folder of the current document we can add this to the project’s <code>.tm_properties</code> file:</p>
 
 <pre><code>windowTitle = &quot;${TM_FILEPATH/.*\/(.*\/).*/$1/}$TM_DISPLAYNAME$windowTitleProject$windowTitleSCM&quot;
+</code></pre>
+
+<p>Or if we want to show the path as relative to the project root, we can use:</p>
+
+<pre><code>windowTitle = '${TM_FILEPATH:?${TM_FILEPATH/${CWD}.//}:$TM_DISPLAYNAME}$windowTitleProject$windowTitleSCM'
 </code></pre>
 
 <h2 id="tabs">2.3 Tabs</h2>
@@ -626,15 +642,170 @@ fileType = &quot;text.html.markdown&quot;
 
 <h2 id="navigation">5.1 Navigation</h2>
 
-<ul>
-<li>Word movement (<kbd class='keyEquivalent'>⌥</kbd> + left/right)</li>
-<li>Sub-word movement (<kbd class='keyEquivalent'>⌃</kbd> + left/right)</li>
-<li>Column movement (<kbd class='keyEquivalent'>⌥</kbd> + up/down)</li>
-<li>Paired character movement (<kbd class='keyEquivalent'>⌃</kbd> + up/down)</li>
-<li>Bookmarks</li>
-<li>Symbol chooser (<kbd class='keyEquivalent'>⇧⌘T</kbd>)</li>
-<li>Freehanded Movement: Activating via mouse (<kbd class='keyEquivalent'>⌥</kbd>-click)</li>
-</ul>
+<h3 id="word-movement">5.1.1 Word Movement</h3>
+
+<p>Moving between words is done by holding option (<kbd class='keyEquivalent'>⌥</kbd>) and using arrow keys. Selecting can be done by additionally holding down shift (<kbd class='keyEquivalent'>⇧</kbd>), for example to select to the end of the word to the right of the caret, press <kbd class='keyEquivalent'>⌥⇧→</kbd>.</p>
+
+<p>Deleting to beginning or end of words can be done by holding down option when pressing the backward or forward delete keys. On laptop keyboards the forward delete key (<kbd class='keyEquivalent'>⌦</kbd>) is available by holding down the <kbd>fn</kbd> modifier key when pressing backward delete (<kbd class='keyEquivalent'>⌫</kbd>).</p>
+
+<p>By default TextMate classifies a character as belonging to one of 3 groups: <code>word</code>, <code>space</code>, or <code>other</code>. Any sequence of characters belonging to the same group is considered a single unit for the purpose of word movement and other actions that break up the text, like word selection or <a href="text-editing.html#buffer-completion">buffer completion</a>.</p>
+
+<p>It is possible to change the group that text belongs to by adding a <code>characterClass</code> <a href="settings.html#scope-settings">scope setting</a>. For example the Source bundle sets <code>characterClass = 'escape';</code> using a scope selector of <code>constant.character.escape</code>. This means that in a code snippet like the following:</p>
+
+<pre><code>str = &quot;foo‸\nbar&quot;
+</code></pre>
+
+<p>Using <kbd class='keyEquivalent'>⌥→</kbd> will move caret so we end up before <code>bar</code>:</p>
+
+<pre><code>str = &quot;foo\n‸bar&quot;
+</code></pre>
+
+<p>This is because <code>\n</code> is matched by the <a href="language-grammars.html#language-grammars">language grammar</a> and scoped as <code>constant.character.escape.*</code>, which the Source bundle tells TextMate has character class <code>escape</code>, so for the purpose of word movement, it is separate from <code>bar</code>, which has character class <code>word</code>.</p>
+
+<h3 id="sub-word-movement">5.1.2 Sub-word Movement</h3>
+
+<p>If you are using variables with <code>camelCase</code> or <code>snake_case</code> then you can hold control (<kbd class='keyEquivalent'>⌃</kbd>) to move between sub-words, for example (using <kbd class='keyEquivalent'>⌃→</kbd>):</p>
+
+<pre><code>‸someVariable        → some‸Variable
+‸some_other_variable → some‸_other_variable
+</code></pre>
+
+<p>As with <a href="text-editing.html#word-movement">word movement</a>, you can also use the control (<kbd class='keyEquivalent'>⌃</kbd>) modifier with shift (<kbd class='keyEquivalent'>⇧</kbd>) to make selections or delete to sub-word boundaries with control (<kbd class='keyEquivalent'>⌃</kbd>) and the forward and backward delete keys.</p>
+
+<h3 id="column-movement">5.1.3 Column Movement</h3>
+
+<p>Using arrow up/down when holding option (<kbd class='keyEquivalent'>⌥</kbd>) will move the caret to the first/last row in the current column. As usual, also hold down shift (<kbd class='keyEquivalent'>⇧</kbd>) to get it selected.</p>
+
+<p>For example pressing <kbd class='keyEquivalent'>⌥⇧↓</kbd> in this example:</p>
+
+<pre><code>1:  foo  = ‸quux
+2:  bar  =  corge
+3:  baz  =  grault
+4:  qux  =  garply
+</code></pre>
+
+<p>Will select from <code>quux</code> and down to just before <code>garply</code> like this:</p>
+
+<pre><code>1:  foo  = [xxxxxxx
+2:  xxxxxxxxxxxxxxx
+3:  xxxxxxxxxxxxxxx
+4:  xxxxxxx]garply
+</code></pre>
+
+<p>This in itself may not seem like a useful feature, but once we have this (stream) selection, we can use <em>Edit → Select → Toggle Column Selection</em> (<kbd class='keyEquivalent'>⌥</kbd>) to turn it into a (zero-width) columnar selection. The option key (<kbd class='keyEquivalent'>⌥</kbd>) for this menu item means to press and quickly release the option key, don’t hold it down or press any other key.</p>
+
+<p>The result becomes:</p>
+
+<pre><code>1:  foo  = ‸quux
+2:  bar  = ‸corge
+3:  baz  = ‸grault
+4:  qux  = ‸garply
+</code></pre>
+
+<p>That is, we now have <a href="text-editing.html#multiple-carets">multiple carets</a> and can make batch changes across all the lines.</p>
+
+<h3 id="paired-character-movement">5.1.4 Paired Character Movement</h3>
+
+<p>Paired characters are things like braces, brackets, and parenthesis. These can be defined using the <code>highlightPairs</code> <a href="settings.html#scope-settings">scope setting</a>. The value is an array of arrays, each sub-array containing the first and last “character” in a pair. The character can be a string or a regular expression, for the latter, it should be surrounded by slashes.</p>
+
+<p>For example the HTML bundle has this setting:</p>
+
+<pre><code>highlightPairs = (
+  ( '(', ')' ),
+  ( '{', '}' ),
+  ( '[', ']' ),
+  ( '“', '”' ),
+  ( '/&lt;(?!area|base|basefont|br|col|frame|hr|img|input|isindex|link|meta|param)\w+[^&gt;]*(?&lt;!/)&gt;/',
+    '/&lt;/\w+&gt;/'
+  ),
+);
+</code></pre>
+
+<p>The last pair defined is done with regular expressions that match open and close tags.</p>
+
+<p>The setting is both used to pairs when moving caret over one of the two items in a pair, but is also used to allow moving and selecting to pair boundaries.</p>
+
+<p>Use control (<kbd class='keyEquivalent'>⌃</kbd>) with arrow up/down to move to the begin/end of the current pair. You can hold down shift (<kbd class='keyEquivalent'>⇧</kbd>) to make a selection. For example with the following code example:</p>
+
+<pre><code>someFunction(foo, bar‸, baz.qux())
+</code></pre>
+
+<p>Press <kbd class='keyEquivalent'>⌃⇧↓</kbd> to select the last argument, resulting in:</p>
+
+<pre><code>someFunction(foo, bar[xxxxxxxxxx])
+</code></pre>
+
+<p>It is also possible to use <em>Edit → Select → Enclosing Typing Pairs</em> (<kbd class='keyEquivalent'>⇧⌘B</kbd>) to extend the selection to include the immediate outer pairs defined, using that action would result in:</p>
+
+<pre><code>someFunction[xxxxxxxxxxxxxxxxxxxx]
+</code></pre>
+
+<p>Since this is an <a href="">unanchored selection</a> we can use <kbd class='keyEquivalent'>⌥⇧←</kbd> to further extend the selection so that it includes <code>someFunction</code>.</p>
+
+<p>When the paired characters are on their own lines, as is often the case with braces, the selection will be extended to full lines, for example in this example:</p>
+
+<pre><code>1:  int main (int argc, char const* argv[])
+2:  {
+3:     for(size_t i = 0; i &lt; argc; ++i)
+4:     {
+5:        ‸printf(&quot;%zu: %s\n&quot;, i, argv[i]);
+6:     }
+7:     return 0;
+8:  }
+</code></pre>
+
+<p>Using <em>Edit → Select → Enclosing Typing Pairs</em> (<kbd class='keyEquivalent'>⇧⌘B</kbd>) will fully select line 4, 5, and 6.</p>
+
+<p>Two convenient actions worth mentioning are <em>Bundles → Source → Wrap in Braces</em> ({) and <em>Bundles → Source → Unwrap Braces</em> (}). Both are only active when there is a selection, and they will wrap/unwrap and increase/decrease indent accordingly.</p>
+
+<p>Slightly related is <em>Bundles → Source → Strip Wrap Characters</em> (]). This action is also active only when there is a selection, and will strip the outer “wrap characters” of the selection, those could be parenthesis, quotes, or similar.</p>
+
+<h3 id="bookmarks">5.1.5 Bookmarks</h3>
+
+<p>You can use <em>Navigate → Toggle Bookmark</em> (<kbd class='keyEquivalent'>⌘F2</kbd>) to add a remove a bookmark for the current line. Getting back to this bookmark is either done by cycling through bookmarks, using <em>Navigate → Next Bookmark</em> (F2) and <em>Navigate → Previous Bookmark</em> (<kbd class='keyEquivalent'>⇧F2</kbd>), or by finding the bookmark in the <em>Navigate → Go to Bookmark</em> submenu. This menu also allows you to clear all bookmarks for the current document.</p>
+
+<p>You may find that using function keys require the use of the <kbd>fn</kbd> modifier key. This can be changed at the Keyboard page in System Preferences.</p>
+
+<h3 id="symbol-chooser">5.1.6 Symbol Chooser</h3>
+
+<p>For languages that support it, the rightmost pop-up in the status bar shows the current “symbol” (often the function prototype or heading above the caret). This pop-up can be used to move the caret to another section of your document.</p>
+
+<p>For keyboard navigation there is also <em>Navigation → Go to Symbol…</em> (<kbd class='keyEquivalent'>⇧⌘T</kbd>) which opens a panel which supports filtering similar to the <a href="opening-files.html#file-chooser">file chooser</a>.</p>
+
+<p>The panel can be left open and will update as the document is edited. If you single-click an item in the list, the caret will move to the symbol clicked. Double-clicking will do the same but closes the panel.</p>
+
+<p>The symbol list is constructed by including all the parts of the document for which the scope has a matching <code>showInSymbolList</code> <a href="settings.html#scope-settings">scope setting</a> set to <code>1</code> (true).</p>
+
+<p>In addition to <code>showInSymbolList</code> there is a <code>symbolTransformation</code> setting which is one or more regular expression substitutions which are performed on the text extracted. The value of this setting should be: <code>s/«regexp»/«format»/«options»</code> optionally followed by <code>;</code> and more substitutions. It is also possible to put comments in the value, these start with <code>#</code> and end at the next newline.</p>
+
+<p>So if we want to show Markdown headings in the list, which are lines that start with one or more <code>#</code> marks, then we first make sure our <a href="language-grammars.html#language-grammars">language grammar</a> assigns a name to these, a simple rule could be the following:</p>
+
+<pre><code>{  name = 'markup.heading.markdown';
+   match = '^#{1,6}\s*(.*)$';
+},
+</code></pre>
+
+<p>Now we can target headings using a <a href="references.html#scope-selector">scope selector</a> of <code>markup.heading.markdown</code>. We create a <a href="settings.html#scope-settings">scope setting</a> using this scope selector and make it:</p>
+
+<pre><code>{  showInSymbolList = 1; }
+</code></pre>
+
+<p>This however will include the leading pound characters (<code>#</code>) in the list. We can either assign a name (via the <a href="language-grammars.html#language-grammars">language grammar</a>) to the actual title, or we can perform a substitution to get rid of the pound characters. The latter has the advantage that we can change these to indent. This is done by changing the <a href="settings.html#scope-settings">scope setting</a> to:</p>
+
+<pre><code>{  showInSymbolList = 1;
+   symbolTransformation = 's/^#(#*)\s*(.*)/${1/#/ /g}$2/';
+}
+</code></pre>
+
+<p>The transformation is a nested transformation. The outer match will capture all but the first pound character into capture register one and then the actual heading into capture register two. In the <a href="references.html#format-string">format string</a> we change pound characters in capture register one into em-spaces and append the heading as-is.</p>
+<!-- TODO In v2.0-alpha.9475 we need to escape slashes in format string -->
+<!-- TODO Use \x{2003} or similar for the em-space and explain its semantic value -->
+
+<h3 id="freehanded-movement">5.1.7 Freehanded Movement</h3>
+
+<p>Activating via mouse (<kbd class='keyEquivalent'>⌥</kbd>-click)
+Activate via keyboard
+How to abort</p>
 
 <h2 id="selection">5.2 Selection</h2>
 
@@ -748,7 +919,7 @@ ${«int»|«choice 1»,…,«choice n»|}
 
 <p>In the above, <code>«format»</code> is a <a href="references.html#format-string">format string</a> and <code>«any»</code> refers to any of the above.</p>
 
-<p>The next sub-sections will give examples of each of the above.</p>
+<p>The next sections will give examples of each of the above.</p>
 
 <h2 id="plain-text">6.2 Plain Text</h2>
 
@@ -1151,7 +1322,8 @@ TextMate::UI.show_menu(…)
 
 <ul>
 <li>Begin/while rules</li>
-<li>Including from other grammars</li>
+<li>Including from other grammar repositories</li>
+<li><code>$base</code> and <code>$self</code></li>
 <li>The meaning of <code>\G</code></li>
 <li>Rules on captures</li>
 </ul>
@@ -1416,6 +1588,18 @@ offset       = [1-9][0-9]*
 <p>See TextMate 1.x manual.</p>
 
 <h2 id="regular-expression">19.6 Regular Expression</h2>
+</section>
+<section>
+
+<h1 id="updating">20 Updating</h1>
+
+<p>By default TextMate will prompt you when a new version is available.</p>
+
+<p>The <em>Software Update</em> page available via <em>TextMate → Preferences…</em> (<kbd class='keyEquivalent'>⌘,</kbd>) allows you to change <code>Watch For</code> to <em>Nightly Builds</em> which will increase the frequency, despite its name though, the there is no new build every night.</p>
+
+<p>If you switch to <em>Nightly Builds</em> and there is an issue with one of the builds, you can switch back to <em>Normal Releases</em> and select <code>Check Now</code>, which then allows you to downgrade.</p>
+
+<p>You can also find older builds in <code>~/Library/Caches/com.macromates.TextMate</code>.</p>
 </section>
 
 </body>
