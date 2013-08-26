@@ -70,7 +70,11 @@
 <li>5.1.6 <a href="text-editing.html#symbol-chooser">Symbol Chooser</a></li>
 <li>5.1.7 <a href="text-editing.html#freehanded-movement">Freehanded Movement</a></li>
 </ul></li>
-<li>5.2 <a href="text-editing.html#selection">Selection</a></li>
+<li>5.2 <a href="text-editing.html#selection">Selection</a>
+
+<ul>
+<li>5.2.1 <a href="text-editing.html#unanchored-selection">Unanchored Selection</a></li>
+</ul></li>
 <li>5.3 <a href="text-editing.html#multiple-carets">Multiple Carets</a></li>
 <li>5.4 <a href="text-editing.html#cut-copy-and-paste">Cut, Copy, and Paste</a></li>
 <li>5.5 <a href="text-editing.html#buffer-completion">Buffer Completion</a></li>
@@ -740,7 +744,7 @@ fileType = &quot;text.html.markdown&quot;
 <pre><code>someFunction[xxxxxxxxxxxxxxxxxxxx]
 </code></pre>
 
-<p>Since this is an <a href="">unanchored selection</a> we can use <kbd class='keyEquivalent'>⌥⇧←</kbd> to further extend the selection so that it includes <code>someFunction</code>.</p>
+<p>Since this is an <a href="text-editing.html#unanchored-selection">unanchored selection</a> we can use <kbd class='keyEquivalent'>⌥⇧←</kbd> to further extend the selection so that it includes <code>someFunction</code>.</p>
 
 <p>When the paired characters are on their own lines, as is often the case with braces, the selection will be extended to full lines, for example in this example:</p>
 
@@ -793,29 +797,54 @@ fileType = &quot;text.html.markdown&quot;
 <p>This however will include the leading pound characters (<code>#</code>) in the list. We can either assign a name (via the <a href="language-grammars.html#language-grammars">language grammar</a>) to the actual title, or we can perform a substitution to get rid of the pound characters. The latter has the advantage that we can change these to indent. This is done by changing the <a href="settings.html#scope-settings">scope setting</a> to:</p>
 
 <pre><code>{  showInSymbolList = 1;
-   symbolTransformation = 's/^#(#*)\s*(.*)/${1/#/ /g}$2/';
+   symbolTransformation = 's/^#(#*)\s*(.*)/${1/#/\x{2003}/g}$2/';
 }
 </code></pre>
 
-<p>The transformation is a nested transformation. The outer match will capture all but the first pound character into capture register one and then the actual heading into capture register two. In the <a href="references.html#format-string">format string</a> we change pound characters in capture register one into em-spaces and append the heading as-is.</p>
-<!-- TODO In v2.0-alpha.9475 we need to escape slashes in format string -->
-<!-- TODO Use \x{2003} or similar for the em-space and explain its semantic value -->
+<p>The transformation is a nested transformation. The outer match will capture all but the first pound character into capture register one and then the actual heading into capture register two. In the <a href="references.html#format-string">format string</a> we change pound characters in capture register one into em-spaces (<code>\x{2003}</code>) and append the heading as-is.</p>
+<!-- TODO In v2.0-alpha.9475 we need to escape slashes in the format string -->
 
 <h3 id="freehanded-movement">5.1.7 Freehanded Movement</h3>
 
-<p>Activating via mouse (<kbd class='keyEquivalent'>⌥</kbd>-click)
-Activate via keyboard
-How to abort</p>
+<p>It can sometimes be useful to move caret without being restricted by the line endings, for example if we wish to add aligned values to the following source:</p>
+
+<pre><code>buttonMap = {
+   kHome:
+   kBack:
+   kForward:
+   kReload:
+}
+</code></pre>
+
+<p>Then we would have to add four spaces of padding after <code>kHome:</code> before typing <code>1</code>, then arrow down, which would require adding another four spaces of padding, etc.</p>
+
+<p>Alternatively we can hold down option (<kbd class='keyEquivalent'>⌥</kbd>) while clicking (with the mouse) where we wish to type the first text. This gives us a caret that can be moved freely. That way, we can type <code>1</code> followed by arrow down and left, and then type <code>2</code>, etc. until we get:</p>
+
+<pre><code>buttonMap = {
+   kHome:    1
+   kBack:    2
+   kForward: 3
+   kReload:  4
+}
+</code></pre>
+
+<p>Another way to activate this mode is by placing the caret at the end of a line and then use <em>Text → Move Selection → Right</em> (<kbd class='keyEquivalent'>⌃⌘→</kbd>).</p>
+
+<p>To leave the mode, either use the mouse and click somewhere in the text (without holding down option) or use <em>Text → Move Selection → Left</em> (<kbd class='keyEquivalent'>⌃⌘←</kbd>) (without a selection).</p>
 
 <h2 id="selection">5.2 Selection</h2>
 
 <ul>
 <li>Select → Word, Scope, Enclosing Typing Pairs</li>
-<li>Wrapping selection: paired characters, HTML tags, indent and surround in block (<kbd>{</kbd>)</li>
-<li>Unwrapping selection: paired characters (<kbd>]</kbd>), decrease indent and strip block (<kbd>}</kbd>)</li>
+<li>Wrapping selection: paired characters, HTML tags</li>
 <li>Indenting selection: increase, decrease, estimate</li>
 <li>Moving selected text</li>
-<li>Anchored vs unanchored selections (for extending)</li>
+</ul>
+
+<h3 id="unanchored-selection">5.2.1 Unanchored Selection</h3>
+
+<ul>
+<li>For extending</li>
 </ul>
 
 <h2 id="multiple-carets">5.3 Multiple Carets</h2>
@@ -864,6 +893,7 @@ mark_t m = ‸MarkType;
 <ul>
 <li>How to configure</li>
 <li>How to disable</li>
+<li>Smart tab behavior</li>
 </ul>
 
 <h2 id="transposing-text">5.8 Transposing Text</h2>
@@ -1520,7 +1550,7 @@ ${«var»:[/upcase][/downcase][/capitalize][/asciify]}
 (?«var»:«if»}
 
 \U, \L, \E, \u, \l
-\n, \t
+\t, \r, \n, \x{HHHH}, \xHH
 </code></pre>
 
 <ul>
