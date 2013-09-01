@@ -18,10 +18,7 @@ body{
    margin: 0;
    padding: 10px 20px;
 }
-/*.chapter_links li {
-	display: inline;
-}
-*/.chapter_links ul li:nth-child(1) {
+.chapter_links ul li:nth-child(1) {
 	float: left;
 }
 .chapter_links ul li:nth-child(2) {
@@ -47,7 +44,7 @@ body{
    margin: 20px;
 }
 
-.content {
+section {
    margin: 20px;
 }
 

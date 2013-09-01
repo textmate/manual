@@ -34,6 +34,10 @@
 
 * How to create new items: ⌘N
 
+## Tab Trigger
+
+## Key Equivalent
+
 ## Requirements
 
 * Requiring shell commands

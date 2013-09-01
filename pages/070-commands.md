@@ -3,6 +3,8 @@
 * Commands with non-zero exit code treated as error
 * Current working directory
 
+## Search Path
+
 ## Drag Commands
 
 * Dropping multiple files

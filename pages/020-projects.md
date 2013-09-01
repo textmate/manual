@@ -36,6 +36,10 @@ For example, if we want to always show the parent folder of the current document
 
 	windowTitle = "${TM_FILEPATH/.*\/(.*\/).*/$1/}$TM_DISPLAYNAME$windowTitleProject$windowTitleSCM"
 
+Or if we want to show the path as relative to the project root, we can use:
+
+    windowTitle = '${TM_FILEPATH:?${TM_FILEPATH/${CWD}.//}:$TM_DISPLAYNAME}$windowTitleProject$windowTitleSCM'
+
 ## Tabs
 
 ### Creating Tabs
@@ -47,6 +51,15 @@ Selecting :menu:`Window → Merge All Windows` will move all open documents in n
 Once a file has been opened in a new tab, it is possible to move it to a new window by selecting :menu:`Window → Move Tab to New Window`, by selecting the same action in the tab’s context menu, or by double-clicking the tab.
 
 Tabs can also be dragged between windows but if dropped outside the tab bar of an existing TextMate window, the drag will act as if the file itself was dropped, rather than create a new window for the document. This is useful when you need the path of a document inserted into your terminal, as you can then drag and drop the desired tab to the terminal window.
+
+#### Default File Type for New Tabs
+
+When selecting :menu:`File → New Tab (⌥⌘N)`, the file type is read via :ref:`file settings` using the `fileType` key scoped to `attr.untitled`. If for example we wish new files in our :file:`/path/to/project` should default to markdown, then create :file:`/path/to/project/.tm_properties` containing:
+
+	[ attr.untitled ]
+	fileType = "text.html.markdown"
+
+This setting is also used by :menu:`File → New File (⇧⌘N)`.
 
 ### Closing Tabs
 
@@ -65,17 +78,6 @@ Sometimes you have documents that should stay open, like a to-do list, which may
 Opening files from the file browser is done by single-clicking the file’s icon, double-clicking the file name, or using command-down (⌘↓) when focus is in the file browser.
 
 Descending into file packages or application bundles can be done either by selecting :menu:`Show Package Contents` from the context menu, or by holding option (⌥) while double-clicking the item or single-clicking the item’s icon.
-
-### Creating New Items
-
-New files and folders can be created using :menu:`File → New File (⇧⌘N)` and :menu:`File → New Folder (⌃⌘N)`. The location of the new item is determined by the current selection in the file browser. If something is selected, then the new item will be created at the same level as the selected item(s), one exception is that selecting an expanded folder item will create the new item as a descendent of the selected folder.
-
-When creating a new file, the file type is read via :ref:`file settings` using the `fileType` key scoped to `attr.untitled`. If for example we wish new files in our :file:`/path/to/project/manual` should default to markdown, then create :file:`/path/to/project/manual/.tm_properties` containing:
-
-	[ attr.untitled ]
-	fileType = "text.html.markdown"
-
-This setting is also used by :menu:`File → New Tab (⌥⌘N)`.
 
 ### Location and Selections
 
@@ -106,14 +108,20 @@ When focus is in the file browser, the following key equivalents can be used.
 | ⌘⌫             | Move selected item(s) to trash         |
 | ⌘Z, ⇧⌘Z        | Undo or redo last action               |
 | ⌥⌘I            | Show hidden files                      |
-| ⌘←, ⌘[         | Go back in history                     |
-| ⌘→, ⌘]         | Go forward in history                  |
+| ⌘[, ⌘←         | Go back in history                     |
+| ⌘], ⌘→         | Go forward in history                  |
 | ⌘↑             | Go to enclosing folder                 |
 | ⇧⌘G            | Go to folder…                          |
 | ⇧⌘F            | Search with source based on selection  |
 | ⌥F2            | Show context menu                      |
 
 When you cut one or more items, they will not be removed before you paste them somewhere else, as the action is meant for moving items. Use delete instead of cut, if you want the item to be removed.
+
+### Effective Folder
+
+Actions like :menu:`File → New File (⇧⌘N)` require a folder which is obtained from the file browser in this way:
+
+If something is selected, the folder containing the selected item(s) will be used as the effective folder, unless a single expanded folder is selected, in this case, the selected folder is used. If nothing is selected, the top folder showing in the file browser is used.
 
 ### Custom Commands
 

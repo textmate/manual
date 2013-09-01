@@ -33,9 +33,11 @@ The scope selector syntax is as follows:
 	(?«var»:«if»}
 	
 	\U, \L, \E, \u, \l
-	\n, \t
+	\t, \r, \n, \x{HHHH}, \xHH
 
 * Used for: grammar names, `.tm_properties` values, Preferences → Variables, replacement strings
+
+For nested replacements, use named captures as variables are inherited.
 
 ## Glob String
 
@@ -61,6 +63,8 @@ Will match these files:
 	Makefile
 	.tm_properties
 
+Ability to negate match by prefixing with `!`.
+
 ¹ The asterisk will not match slashes nor a leading period.
 
 * Used in `.tm_properties`, find in folder
@@ -83,3 +87,7 @@ This can be used with `mate -l`, _Go to Line…_, and the ⌘T dialog (by puttin
 You can then select `main.cc:32` press ⌘E and jump to Avian and press ⌘T followed by ↩ (one shortcoming is that ⌘T doesn’t show the currently open file, so it will only work if `main.cc` is not already the active file).
 
 ## Modified Property List
+
+See TextMate 1.x manual.
+
+## Regular Expression
