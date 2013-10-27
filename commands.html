@@ -22,9 +22,17 @@
 <li>7 <a href="#commands">Commands</a>
 
 <ul>
-<li>7.1 <a href="#search-path">Search Path</a></li>
+<li>7.1 <a href="#search-path">Search Path</a>
+
+<ul>
+<li>7.1.1 <a href="#required-commands">Required Commands</a></li>
+</ul></li>
 <li>7.2 <a href="#drag-commands">Drag Commands</a></li>
-<li>7.3 <a href="#writing-commands">Writing Commands</a></li>
+<li>7.3 <a href="#writing-commands">Writing Commands</a>
+
+<ul>
+<li>7.3.1 <a href="#executor-commands">Executor Commands</a></li>
+</ul></li>
 </ul></li>
 </ul>
 </div>
@@ -40,6 +48,16 @@
 
 <h2 id="search-path">7.1 Search Path</h2>
 
+<h3 id="required-commands">7.1.1 Required Commands</h3>
+
+<pre><code>requiredCommands = (
+    command = 'clang-format';
+    variable = 'TM_CLANG_FORMAT';
+    locations = ( '/usr/local/bin/clang-format' );
+    moreInfoURL = 'http://clang.llvm.org/docs/ClangFormat.html';
+);
+</code></pre>
+
 <h2 id="drag-commands">7.2 Drag Commands</h2>
 
 <ul>
@@ -51,6 +69,29 @@
 <ul>
 <li>Use <code>TM_«tool»</code> and use it without quotes if there is a chance the tool might be multiple tools.</li>
 </ul>
+
+<h3 id="executor-commands">7.3.1 Executor Commands</h3>
+
+<p>The command can read the document content via stdin, that will be the current state of the document.</p>
+
+<p>Do you wish for the command to never save the document? There are a few options, but it depends on your goal.</p>
+
+<p>For example, if you wish the command to fire after a save operation (how it is presently setup, although by overloading the <kbd class='keyEquivalent'>⌘S</kbd> key, which we discourage) then you can set the semantic class to ‘callback.document.did-save’ then it is automatically called after each save, and can read the document via the <code>TM_FILEPATH</code> environment variable (note that if you do this, you should make sure that “Save” is set to “Nothing” to avoid a loop).</p>
+
+<p>If you wish to run the command decoupled from any potential save, then you should read the document from stdin. We do have some ruby support code that most of the run commands use, it will save an untitled document to a temporary file and setup <code>TM_FILEPATH</code> accordingly, meaning that the command can be assert that <code>TM_FILEPATH</code> always points to an up-to-date file.</p>
+
+<p>A simple example of this is:</p>
+
+<pre><code>#!/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin/ruby
+require &quot;#{ENV['TM_SUPPORT_PATH']}/lib/tm/save_current_document&quot;
+
+TextMate.save_if_untitled('js')
+# use ENV['TM_FILEPATH']
+</code></pre>
+
+<p>The argument to <code>TextMate.save_if_untitled</code> is the extension to use for the temporary file (and can be left out).</p>
+
+<p>When using <code>TextMate.save_if_untitled</code> the command should set “Save” to “</p>
 </section>
 <footer>
 <div class="chapter_links">

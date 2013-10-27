@@ -74,6 +74,11 @@
 
 <ul>
 <li>5.2.1 <a href="text-editing.html#unanchored-selection">Unanchored Selection</a></li>
+<li>5.2.2 <a href="text-editing.html#unit-selections">Unit Selections</a></li>
+<li>5.2.3 <a href="text-editing.html#column-selection">Column Selection</a></li>
+<li>5.2.4 <a href="text-editing.html#wrapping-selection">Wrapping Selection</a></li>
+<li>5.2.5 <a href="text-editing.html#indenting-selection">Indenting Selection</a></li>
+<li>5.2.6 <a href="text-editing.html#moving-selection">Moving Selection</a></li>
 </ul></li>
 <li>5.3 <a href="text-editing.html#multiple-carets">Multiple Carets</a></li>
 <li>5.4 <a href="text-editing.html#cut-copy-and-paste">Cut, Copy, and Paste</a></li>
@@ -101,9 +106,17 @@
 <li>7 <a href="commands.html#commands">Commands</a>
 
 <ul>
-<li>7.1 <a href="commands.html#search-path">Search Path</a></li>
+<li>7.1 <a href="commands.html#search-path">Search Path</a>
+
+<ul>
+<li>7.1.1 <a href="commands.html#required-commands">Required Commands</a></li>
+</ul></li>
 <li>7.2 <a href="commands.html#drag-commands">Drag Commands</a></li>
-<li>7.3 <a href="commands.html#writing-commands">Writing Commands</a></li>
+<li>7.3 <a href="commands.html#writing-commands">Writing Commands</a>
+
+<ul>
+<li>7.3.1 <a href="commands.html#executor-commands">Executor Commands</a></li>
+</ul></li>
 </ul></li>
 <li>8 <a href="html-output.html#html-output">HTML Output</a>
 
@@ -347,6 +360,8 @@ fileType = &quot;text.html.markdown&quot;
 <p>Opening files from the file browser is done by single-clicking the file’s icon, double-clicking the file name, or using command-down (<kbd class='keyEquivalent'>⌘↓</kbd>) when focus is in the file browser.</p>
 
 <p>Descending into file packages or application bundles can be done either by selecting <em>Show Package Contents</em> from the context menu, or by holding option (<kbd class='keyEquivalent'>⌥</kbd>) while double-clicking the item or single-clicking the item’s icon.</p>
+
+<p>If command (<kbd class='keyEquivalent'>⌘</kbd>) is pressed while single-clicking an icon in the file browser, then the clicked item will be shown in Finder. The same functionality is available from the context menu.</p>
 
 <h3 id="location-and-selections">2.4.1 Location and Selections</h3>
 
@@ -802,7 +817,6 @@ fileType = &quot;text.html.markdown&quot;
 </code></pre>
 
 <p>The transformation is a nested transformation. The outer match will capture all but the first pound character into capture register one and then the actual heading into capture register two. In the <a href="references.html#format-string">format string</a> we change pound characters in capture register one into em-spaces (<code>\x{2003}</code>) and append the heading as-is.</p>
-<!-- TODO In v2.0-alpha.9475 we need to escape slashes in the format string -->
 
 <h3 id="freehanded-movement">5.1.7 Freehanded Movement</h3>
 
@@ -834,18 +848,48 @@ fileType = &quot;text.html.markdown&quot;
 
 <h2 id="selection">5.2 Selection</h2>
 
-<ul>
-<li>Select → Word, Scope, Enclosing Typing Pairs</li>
-<li>Wrapping selection: paired characters, HTML tags</li>
-<li>Indenting selection: increase, decrease, estimate</li>
-<li>Moving selected text</li>
-</ul>
+<p>Selecting text is done by holding down shift (<kbd class='keyEquivalent'>⇧</kbd>) while using the arrow keys, optionally holding down some of the modifier keys described in the previous section.</p>
+
+<p>A selection created this way is anchored to where the caret is, the first time movement is done while holding down shift. Any further movement with shift down will extend or shrink the selection, by moving the non-anchor end point of the selection.</p>
 
 <h3 id="unanchored-selection">5.2.1 Unanchored Selection</h3>
 
+<p>Any action that cause a selection and doesn’t involve the arrow keys, is unanchored, which means that the initial movement done (while holding down shift) after creating the selection, will extend the selection, and set the anchor as the opposite end point to the one being moved.</p>
+
+<p>For example given the following line:</p>
+
+<pre><code>foo(baz, bar(qux, ‸quux, corge))
+</code></pre>
+
+<p>If we wish to select <code>bar(qux, quux, corge)</code> we can do so by first choosing <em>Edit → Select → Enclosing Typing Pairs</em> (<kbd class='keyEquivalent'>⇧⌘B</kbd>). This will select <code>(qux, quux, corge)</code>. After this, we can extend the selection to either side, by using the appropriate arrow key. Here we wish to extend it to the left, so we use <kbd class='keyEquivalent'>⌥⇧←</kbd> to extend it by one word. Had we instead used <kbd class='keyEquivalent'>⇧→</kbd> then we would have extended the selection to the right, by adding the last <code>)</code> to the selection.</p>
+
+<h3 id="unit-selections">5.2.2 Unit Selections</h3>
+
 <ul>
-<li>For extending</li>
+<li>Select → Word, Scope, Enclosing Typing Pairs</li>
 </ul>
+
+<h3 id="column-selection">5.2.3 Column Selection</h3>
+
+<ul>
+<li><em>Edit → Select → Toggle Column Selection</em> (<kbd class='keyEquivalent'>⌥</kbd>).</li>
+</ul>
+
+<h3 id="wrapping-selection">5.2.4 Wrapping Selection</h3>
+
+<ul>
+<li>Paired characters, HTML tags</li>
+<li>Wrapping/unwrapping braces</li>
+<li>Stripping wrap characters (quotes, etc.)</li>
+</ul>
+
+<h3 id="indenting-selection">5.2.5 Indenting Selection</h3>
+
+<ul>
+<li>Increase, decrease, estimate</li>
+</ul>
+
+<h3 id="moving-selection">5.2.6 Moving Selection</h3>
 
 <h2 id="multiple-carets">5.3 Multiple Carets</h2>
 
@@ -1104,6 +1148,16 @@ ${«int»|«choice 1»,…,«choice n»|}
 
 <h2 id="search-path">7.1 Search Path</h2>
 
+<h3 id="required-commands">7.1.1 Required Commands</h3>
+
+<pre><code>requiredCommands = (
+    command = 'clang-format';
+    variable = 'TM_CLANG_FORMAT';
+    locations = ( '/usr/local/bin/clang-format' );
+    moreInfoURL = 'http://clang.llvm.org/docs/ClangFormat.html';
+);
+</code></pre>
+
 <h2 id="drag-commands">7.2 Drag Commands</h2>
 
 <ul>
@@ -1115,6 +1169,29 @@ ${«int»|«choice 1»,…,«choice n»|}
 <ul>
 <li>Use <code>TM_«tool»</code> and use it without quotes if there is a chance the tool might be multiple tools.</li>
 </ul>
+
+<h3 id="executor-commands">7.3.1 Executor Commands</h3>
+
+<p>The command can read the document content via stdin, that will be the current state of the document.</p>
+
+<p>Do you wish for the command to never save the document? There are a few options, but it depends on your goal.</p>
+
+<p>For example, if you wish the command to fire after a save operation (how it is presently setup, although by overloading the <kbd class='keyEquivalent'>⌘S</kbd> key, which we discourage) then you can set the semantic class to ‘callback.document.did-save’ then it is automatically called after each save, and can read the document via the <code>TM_FILEPATH</code> environment variable (note that if you do this, you should make sure that “Save” is set to “Nothing” to avoid a loop).</p>
+
+<p>If you wish to run the command decoupled from any potential save, then you should read the document from stdin. We do have some ruby support code that most of the run commands use, it will save an untitled document to a temporary file and setup <code>TM_FILEPATH</code> accordingly, meaning that the command can be assert that <code>TM_FILEPATH</code> always points to an up-to-date file.</p>
+
+<p>A simple example of this is:</p>
+
+<pre><code>#!/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin/ruby
+require &quot;#{ENV['TM_SUPPORT_PATH']}/lib/tm/save_current_document&quot;
+
+TextMate.save_if_untitled('js')
+# use ENV['TM_FILEPATH']
+</code></pre>
+
+<p>The argument to <code>TextMate.save_if_untitled</code> is the extension to use for the temporary file (and can be left out).</p>
+
+<p>When using <code>TextMate.save_if_untitled</code> the command should set “Save” to “</p>
 </section>
 <section>
 

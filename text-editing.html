@@ -37,6 +37,11 @@
 
 <ul>
 <li>5.2.1 <a href="#unanchored-selection">Unanchored Selection</a></li>
+<li>5.2.2 <a href="#unit-selections">Unit Selections</a></li>
+<li>5.2.3 <a href="#column-selection">Column Selection</a></li>
+<li>5.2.4 <a href="#wrapping-selection">Wrapping Selection</a></li>
+<li>5.2.5 <a href="#indenting-selection">Indenting Selection</a></li>
+<li>5.2.6 <a href="#moving-selection">Moving Selection</a></li>
 </ul></li>
 <li>5.3 <a href="#multiple-carets">Multiple Carets</a></li>
 <li>5.4 <a href="#cut-copy-and-paste">Cut, Copy, and Paste</a></li>
@@ -213,7 +218,6 @@
 </code></pre>
 
 <p>The transformation is a nested transformation. The outer match will capture all but the first pound character into capture register one and then the actual heading into capture register two. In the <a href="references.html#format-string">format string</a> we change pound characters in capture register one into em-spaces (<code>\x{2003}</code>) and append the heading as-is.</p>
-<!-- TODO In v2.0-alpha.9475 we need to escape slashes in the format string -->
 
 <h3 id="freehanded-movement">5.1.7 Freehanded Movement</h3>
 
@@ -245,18 +249,48 @@
 
 <h2 id="selection">5.2 Selection</h2>
 
-<ul>
-<li>Select → Word, Scope, Enclosing Typing Pairs</li>
-<li>Wrapping selection: paired characters, HTML tags</li>
-<li>Indenting selection: increase, decrease, estimate</li>
-<li>Moving selected text</li>
-</ul>
+<p>Selecting text is done by holding down shift (<kbd class='keyEquivalent'>⇧</kbd>) while using the arrow keys, optionally holding down some of the modifier keys described in the previous section.</p>
+
+<p>A selection created this way is anchored to where the caret is, the first time movement is done while holding down shift. Any further movement with shift down will extend or shrink the selection, by moving the non-anchor end point of the selection.</p>
 
 <h3 id="unanchored-selection">5.2.1 Unanchored Selection</h3>
 
+<p>Any action that cause a selection and doesn’t involve the arrow keys, is unanchored, which means that the initial movement done (while holding down shift) after creating the selection, will extend the selection, and set the anchor as the opposite end point to the one being moved.</p>
+
+<p>For example given the following line:</p>
+
+<pre><code>foo(baz, bar(qux, ‸quux, corge))
+</code></pre>
+
+<p>If we wish to select <code>bar(qux, quux, corge)</code> we can do so by first choosing <em>Edit → Select → Enclosing Typing Pairs</em> (<kbd class='keyEquivalent'>⇧⌘B</kbd>). This will select <code>(qux, quux, corge)</code>. After this, we can extend the selection to either side, by using the appropriate arrow key. Here we wish to extend it to the left, so we use <kbd class='keyEquivalent'>⌥⇧←</kbd> to extend it by one word. Had we instead used <kbd class='keyEquivalent'>⇧→</kbd> then we would have extended the selection to the right, by adding the last <code>)</code> to the selection.</p>
+
+<h3 id="unit-selections">5.2.2 Unit Selections</h3>
+
 <ul>
-<li>For extending</li>
+<li>Select → Word, Scope, Enclosing Typing Pairs</li>
 </ul>
+
+<h3 id="column-selection">5.2.3 Column Selection</h3>
+
+<ul>
+<li><em>Edit → Select → Toggle Column Selection</em> (<kbd class='keyEquivalent'>⌥</kbd>).</li>
+</ul>
+
+<h3 id="wrapping-selection">5.2.4 Wrapping Selection</h3>
+
+<ul>
+<li>Paired characters, HTML tags</li>
+<li>Wrapping/unwrapping braces</li>
+<li>Stripping wrap characters (quotes, etc.)</li>
+</ul>
+
+<h3 id="indenting-selection">5.2.5 Indenting Selection</h3>
+
+<ul>
+<li>Increase, decrease, estimate</li>
+</ul>
+
+<h3 id="moving-selection">5.2.6 Moving Selection</h3>
 
 <h2 id="multiple-carets">5.3 Multiple Carets</h2>
 
