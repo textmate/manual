@@ -13,6 +13,7 @@ body{
 	height: 88px;
 	overflow: hidden;
 	position: fixed;
+	z-index: 10000;
 	top: -3px;
 	right: -3px;
 }
