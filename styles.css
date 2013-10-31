@@ -12,7 +12,7 @@ body{
 	width: 85px;
 	height: 88px;
 	overflow: hidden;
-	position: absolute;
+	position: fixed;
 	top: -3px;
 	right: -3px;
 }
