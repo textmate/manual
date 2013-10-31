@@ -18,6 +18,11 @@ body{
 }
 
 .ribbon-green {
+	top: -3px;
+	right: -3px;
+	width: 85px;
+	height: 88px;
+
 	font: bold 15px Sans-Serif;
 	color: #333;
 	text-align: center;
