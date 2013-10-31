@@ -18,11 +18,6 @@ body{
 }
 
 .ribbon-green {
-	top: -3px;
-	right: -3px;
-	width: 85px;
-	height: 88px;
-
 	font: bold 15px Sans-Serif;
 	color: #333;
 	text-align: center;
@@ -31,7 +26,7 @@ body{
 	-moz-transform:    rotate(45deg);
 	-ms-transform:     rotate(45deg);
 	-o-transform:      rotate(45deg);
-	position: fixed;
+	position: relative;
 	padding: 7px 0;
 	left: -5px;
 	top: 15px;
