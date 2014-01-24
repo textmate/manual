@@ -8,8 +8,8 @@
 
 ## Finding Bundle Items
 
-* Title/key equivalent search (⌃⌘T)
-* Editing found item (⌥↩)
+* Title/key equivalent search (<kbd>⌃⌘T</kbd>)
+* Editing found item (<kbd>⌥↩</kbd>)
 
 ## General Actions
 
@@ -22,9 +22,9 @@
 
 ## Source Actions
 
-* Build/Run: Running untitled documents (⌘B/⌘R)
-* Documentation for Word (⌃H)
-* Validate Syntax (⌃⇧V)
+* Build/Run: Running untitled documents (<kbd>⌘B</kbd>/<kbd>⌘R</kbd>)
+* Documentation for Word (<kbd>⌃H</kbd>)
+* Validate Syntax (<kbd>⌃⇧V</kbd>)
 * Commenting/uncommenting: How to configure
 * Toggle single/double quotes or `camelCase`/`snake_case`
 * Aligning assignments
@@ -32,7 +32,7 @@
 
 ## Bundle Editor
 
-* How to create new items: ⌘N
+* How to create new items: <kbd>⌘N</kbd>
 
 ## Tab Trigger
 
