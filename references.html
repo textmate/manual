@@ -92,6 +92,13 @@ ${«var»:[/upcase][/downcase][/capitalize][/asciify]}
 [«a»«b»«c»]     -- Match an «a», «b» or «c» character
 [«a»-«b»]       -- Match one character in the range «a»-«b»
 [^«a»-«b»]      -- Match one character not in the range «a»-«b»
+~«a» or !«a»    -- Do not match «a», e.g. to match all but *.h
+                   files under src/ use `src/**~*.h`
+</code></pre>
+
+<p>Negations (<code>~</code> or <code>!</code>) can be followed by more negations. E.g. to exclude both <code>lib*.a</code> and <code>*.o</code> use:</p>
+
+<pre><code>~lib*.a~*.o
 </code></pre>
 
 <p>Braces can be nested and contain other glob characters. Example:</p>
@@ -108,8 +115,6 @@ target
 Makefile
 .tm_properties
 </code></pre>
-
-<p>Ability to negate match by prefixing with <code>!</code>.</p>
 
 <p>¹ The asterisk will not match slashes nor a leading period.</p>
 
