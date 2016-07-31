@@ -29,8 +29,8 @@ The scope selector syntax is as follows:
 	${«var»/«regexp»/«format»/«options»}
 	${«var»:[/upcase][/downcase][/capitalize][/asciify]}
 	
-	(?«var»:«if»:«else»}
-	(?«var»:«if»}
+	(?«var»:«if»:«else»)
+	(?«var»:«if»)
 	
 	\U, \L, \E, \u, \l
 	\t, \r, \n, \x{HHHH}, \xHH
