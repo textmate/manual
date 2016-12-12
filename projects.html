@@ -52,16 +52,16 @@
 
 <h1 id="projects">2 Projects</h1>
 
-<p>TextMate 1.x allowed you to add and group files in a source list, which served as input for “project actions” such as the <a href="opening-files.html#file-chooser">file chooser</a> and multi-file searching.</p>
+<p>TextMate 1.x allowed you to add and group files in a source list, which served as input for “project actions” such as the <a href="">file chooser</a> and multi-file searching.</p>
 
-<p>This functionality is not available in TextMate 2, instead you select a folder to use as a project, and TextMate will treat items in that folder as belonging to the project. Unwanted items can be excluded by <a href="settings.html#filtering-files">filtering files</a>, and symbolic links can be created to reference items outside the folder, though when referencing other folders, they are not followed by default by the <a href="opening-files.html#file-chooser">file chooser</a> and during <a href="searching.html#searching">searching</a>, but this can be enabled.</p>
+<p>This functionality is not available in TextMate 2, instead you select a folder to use as a project, and TextMate will treat items in that folder as belonging to the project. Unwanted items can be excluded by <a href="settings.html#filtering-files">filtering files</a>, and symbolic links can be created to reference items outside the folder, though when referencing other folders, they are not followed by default by the <a href="">file chooser</a> and during <a href="searching.html#searching">searching</a>, but this can be enabled.</p>
 <!-- TODO Should probably allow the file browser to expand symbolic links -->
 
 <p>The main reason for the change is that any organization done inside TextMate is not understood by third party tools. For example if you wish to use version control, you will find that pretty much all version control systems work on a folder, not on a set of items defined by a <code>.tmProject</code> file. Even many of TextMate’s own bundle commands are made to work with a “project folder”.</p>
 
 <h2 id="project-folder">2.1 Project Folder</h2>
 
-<p>The project folder is used by the <a href="opening-files.html#file-chooser">file chooser</a>, <a href="searching.html#searching">searching</a>, is exposed to <a href="commands.html#commands">commands</a> as the <code>TM_PROJECT_DIRECTORY</code> <a href="snippets.html#variables">variable</a>, and is also the folder from where <a href="settings.html#file-settings">settings</a> are read when there is no document path.</p>
+<p>The project folder is used by the <a href="">file chooser</a>, <a href="searching.html#searching">searching</a>, is exposed to <a href="commands.html#commands">commands</a> as the <code>TM_PROJECT_DIRECTORY</code> <a href="snippets.html#variables">variable</a>, and is also the folder from where <a href="settings.html#file-settings">settings</a> are read when there is no document path.</p>
 
 <p>When opening a folder, for example by dragging the folder to the TextMate application icon, the window created will have the dragged folder associated with it, as that window’s project folder. When opening a single file, it will use the parent folder of that file.</p>
 
@@ -123,7 +123,7 @@ fileType = &quot;text.html.markdown&quot;
 <p>Additionally there are a few explicit ways that you can close multiple tabs in a single action:</p>
 
 <ul>
-<li>Hold down option (<kbd class='keyEquivalent'>⌥</kbd>) when opening a file either via the <a href="projects.html#file-browser">file browser</a> or <a href="opening-files.html#file-chooser">file chooser</a>. For the latter, you normally open files via return (<kbd class='keyEquivalent'>↩</kbd>) so here you would press option-return (<kbd class='keyEquivalent'>⌥↩</kbd>).</li>
+<li>Hold down option (<kbd class='keyEquivalent'>⌥</kbd>) when opening a file either via the <a href="projects.html#file-browser">file browser</a> or <a href="">file chooser</a>. For the latter, you normally open files via return (<kbd class='keyEquivalent'>↩</kbd>) so here you would press option-return (<kbd class='keyEquivalent'>⌥↩</kbd>).</li>
 <li>Use <em>File → Close Other Tabs</em> (<kbd class='keyEquivalent'>⌃⌘W</kbd>) or <em>File → Close All Tabs</em> (<kbd class='keyEquivalent'>⌃⌥⌘W</kbd>).</li>
 <li>Right-click a tab and select any of the close actions, e.g. <em>Close Tabs to the Right</em>.</li>
 </ul>
@@ -158,77 +158,77 @@ fileType = &quot;text.html.markdown&quot;
 
 <table>
 <colgroup>
-<col style="text-align:left;"/>
-<col style="text-align:left;"/>
+<col/>
+<col/>
 </colgroup>
 
 <thead>
 <tr>
-	<th style="text-align:left;">Key Equivalent</th>
-	<th style="text-align:left;">Action</th>
+	<th>Key Equivalent</th>
+	<th>Action</th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
-	<td style="text-align:left;"><kbd class='keyEquivalent'>⌘↓</kbd>, <kbd class='keyEquivalent'>⌘O</kbd></td>
-	<td style="text-align:left;">Open selected item(s)</td>
+	<td><kbd class='keyEquivalent'>⌘↓</kbd>, <kbd class='keyEquivalent'>⌘O</kbd></td>
+	<td>Open selected item(s)</td>
 </tr>
 <tr>
-	<td style="text-align:left;">Space</td>
-	<td style="text-align:left;">Quick Look selected item(s)</td>
+	<td>Space</td>
+	<td>Quick Look selected item(s)</td>
 </tr>
 <tr>
-	<td style="text-align:left;"><kbd class='keyEquivalent'>↩</kbd></td>
-	<td style="text-align:left;">Rename selected item</td>
+	<td><kbd class='keyEquivalent'>↩</kbd></td>
+	<td>Rename selected item</td>
 </tr>
 <tr>
-	<td style="text-align:left;"><kbd class='keyEquivalent'>⌘D</kbd></td>
-	<td style="text-align:left;">Duplicate selected item(s)</td>
+	<td><kbd class='keyEquivalent'>⌘D</kbd></td>
+	<td>Duplicate selected item(s)</td>
 </tr>
 <tr>
-	<td style="text-align:left;"><kbd class='keyEquivalent'>⌘X</kbd>, <kbd class='keyEquivalent'>⌘C</kbd></td>
-	<td style="text-align:left;">Cut or copy selected item(s)</td>
+	<td><kbd class='keyEquivalent'>⌘X</kbd>, <kbd class='keyEquivalent'>⌘C</kbd></td>
+	<td>Cut or copy selected item(s)</td>
 </tr>
 <tr>
-	<td style="text-align:left;"><kbd class='keyEquivalent'>⌘V</kbd></td>
-	<td style="text-align:left;">Paste item(s)</td>
+	<td><kbd class='keyEquivalent'>⌘V</kbd></td>
+	<td>Paste item(s)</td>
 </tr>
 <tr>
-	<td style="text-align:left;"><kbd class='keyEquivalent'>⌘⌫</kbd></td>
-	<td style="text-align:left;">Move selected item(s) to trash</td>
+	<td><kbd class='keyEquivalent'>⌘⌫</kbd></td>
+	<td>Move selected item(s) to trash</td>
 </tr>
 <tr>
-	<td style="text-align:left;"><kbd class='keyEquivalent'>⌘Z</kbd>, <kbd class='keyEquivalent'>⇧⌘Z</kbd></td>
-	<td style="text-align:left;">Undo or redo last action</td>
+	<td><kbd class='keyEquivalent'>⌘Z</kbd>, <kbd class='keyEquivalent'>⇧⌘Z</kbd></td>
+	<td>Undo or redo last action</td>
 </tr>
 <tr>
-	<td style="text-align:left;"><kbd class='keyEquivalent'>⌥⌘I</kbd></td>
-	<td style="text-align:left;">Show hidden files</td>
+	<td><kbd class='keyEquivalent'>⌥⌘I</kbd></td>
+	<td>Show hidden files</td>
 </tr>
 <tr>
-	<td style="text-align:left;"><kbd class='keyEquivalent'>⌘[</kbd>, <kbd class='keyEquivalent'>⌘←</kbd></td>
-	<td style="text-align:left;">Go back in history</td>
+	<td><kbd class='keyEquivalent'>⌘[</kbd>, <kbd class='keyEquivalent'>⌘←</kbd></td>
+	<td>Go back in history</td>
 </tr>
 <tr>
-	<td style="text-align:left;"><kbd class='keyEquivalent'>⌘]</kbd>, <kbd class='keyEquivalent'>⌘→</kbd></td>
-	<td style="text-align:left;">Go forward in history</td>
+	<td><kbd class='keyEquivalent'>⌘]</kbd>, <kbd class='keyEquivalent'>⌘→</kbd></td>
+	<td>Go forward in history</td>
 </tr>
 <tr>
-	<td style="text-align:left;"><kbd class='keyEquivalent'>⌘↑</kbd></td>
-	<td style="text-align:left;">Go to enclosing folder</td>
+	<td><kbd class='keyEquivalent'>⌘↑</kbd></td>
+	<td>Go to enclosing folder</td>
 </tr>
 <tr>
-	<td style="text-align:left;"><kbd class='keyEquivalent'>⇧⌘G</kbd></td>
-	<td style="text-align:left;">Go to folder…</td>
+	<td><kbd class='keyEquivalent'>⇧⌘G</kbd></td>
+	<td>Go to folder…</td>
 </tr>
 <tr>
-	<td style="text-align:left;"><kbd class='keyEquivalent'>⇧⌘F</kbd></td>
-	<td style="text-align:left;">Search with source based on selection</td>
+	<td><kbd class='keyEquivalent'>⇧⌘F</kbd></td>
+	<td>Search with source based on selection</td>
 </tr>
 <tr>
-	<td style="text-align:left;"><kbd class='keyEquivalent'>⌥F2</kbd></td>
-	<td style="text-align:left;">Show context menu</td>
+	<td><kbd class='keyEquivalent'>⌥F2</kbd></td>
+	<td>Show context menu</td>
 </tr>
 </tbody>
 </table>
